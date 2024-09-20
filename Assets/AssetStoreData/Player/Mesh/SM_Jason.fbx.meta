@@ -39,7 +39,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -93,11 +93,774 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
-  importAnimation: 1
+  importAnimation: 0
   humanDescription:
     serializedVersion: 3
-    human: []
-    skeleton: []
+    human:
+    - boneName: Cloth_Pelvis
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_LThigh1
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: -60, y: -60, z: -90}
+        max: {x: 60, y: 60, z: 50}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_RThigh1
+      humanName: RightUpperLeg
+      limit:
+        min: {x: -60, y: -60, z: -90}
+        max: {x: 60, y: 60, z: 50}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_LThigh2
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: -90, y: 0, z: -80}
+        max: {x: 90, y: 0, z: 80}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_RThigh2
+      humanName: RightLowerLeg
+      limit:
+        min: {x: -90, y: 0, z: -80}
+        max: {x: 90, y: 0, z: 80}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_LThigh3
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: -30, z: -50}
+        max: {x: 0, y: 30, z: 50}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_RThigh3
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: -30, z: -50}
+        max: {x: 0, y: 30, z: 50}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_Spine1
+      humanName: Spine
+      limit:
+        min: {x: -40, y: -40, z: -40}
+        max: {x: 40, y: 40, z: 40}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_Spine2
+      humanName: Chest
+      limit:
+        min: {x: -40, y: -40, z: -40}
+        max: {x: 40, y: 40, z: 40}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_Neck
+      humanName: Neck
+      limit:
+        min: {x: -40, y: -40, z: -40}
+        max: {x: 40, y: 40, z: 40}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_Head
+      humanName: Head
+      limit:
+        min: {x: -40, y: -40, z: -40}
+        max: {x: 40, y: 40, z: 40}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_LCollarbone
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: -15, z: -15}
+        max: {x: 0, y: 15, z: 30}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_RCollarbone
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: -15, z: -15}
+        max: {x: 0, y: 15, z: 30}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_LUpperarm1
+      humanName: LeftUpperArm
+      limit:
+        min: {x: -90, y: -100, z: -60}
+        max: {x: 90, y: 100, z: 100}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_RUpperarm1
+      humanName: RightUpperArm
+      limit:
+        min: {x: -90, y: -100, z: -60}
+        max: {x: 90, y: 100, z: 100}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_LUpperarm3
+      humanName: LeftLowerArm
+      limit:
+        min: {x: -90, y: 0, z: -80}
+        max: {x: 90, y: 0, z: 80}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_RUpperarm3
+      humanName: RightLowerArm
+      limit:
+        min: {x: -90, y: 0, z: -80}
+        max: {x: 90, y: 0, z: 80}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_LForearm2
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: -40, z: -80}
+        max: {x: 0, y: 40, z: 80}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_RForearm2
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: -40, z: -80}
+        max: {x: 0, y: 40, z: 80}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_LCalf1
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: -50}
+        max: {x: 0, y: 0, z: 50}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_RCalf1
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: -50}
+        max: {x: 0, y: 0, z: 50}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_LDigit21
+      humanName: Left Thumb Proximal
+      limit:
+        min: {x: 0, y: -25, z: -20}
+        max: {x: 0, y: 25, z: 20}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_LDigit22
+      humanName: Left Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: -40}
+        max: {x: 0, y: 0, z: 35}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_LDigit23
+      humanName: Left Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: -40}
+        max: {x: 0, y: 0, z: 35}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_LDigit31
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: -20, z: -50}
+        max: {x: 0, y: 20, z: 50}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_LDigit32
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: -45}
+        max: {x: 0, y: 0, z: 45}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_LDigit33
+      humanName: Left Index Distal
+      limit:
+        min: {x: 0, y: 0, z: -45}
+        max: {x: 0, y: 0, z: 45}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_LDigit41
+      humanName: Left Middle Proximal
+      limit:
+        min: {x: 0, y: -7.5, z: -50}
+        max: {x: 0, y: 7.5, z: 50}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_LDigit42
+      humanName: Left Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: -45}
+        max: {x: 0, y: 0, z: 45}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_LDigit43
+      humanName: Left Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: -45}
+        max: {x: 0, y: 0, z: 45}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_LDigit51
+      humanName: Left Ring Proximal
+      limit:
+        min: {x: 0, y: -7.5, z: -50}
+        max: {x: 0, y: 7.5, z: 50}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_LDigit52
+      humanName: Left Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: -45}
+        max: {x: 0, y: 0, z: 45}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_LDigit53
+      humanName: Left Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: -45}
+        max: {x: 0, y: 0, z: 45}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_RDigit21
+      humanName: Right Thumb Proximal
+      limit:
+        min: {x: 0, y: -25, z: -20}
+        max: {x: 0, y: 25, z: 20}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_RDigit22
+      humanName: Right Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: -40}
+        max: {x: 0, y: 0, z: 35}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_RDigit23
+      humanName: Right Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: -40}
+        max: {x: 0, y: 0, z: 35}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_RDigit31
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: -20, z: -50}
+        max: {x: 0, y: 20, z: 50}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_RDigit32
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: -45}
+        max: {x: 0, y: 0, z: 45}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_RDigit33
+      humanName: Right Index Distal
+      limit:
+        min: {x: 0, y: 0, z: -45}
+        max: {x: 0, y: 0, z: 45}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_RDigit41
+      humanName: Right Middle Proximal
+      limit:
+        min: {x: 0, y: -7.5, z: -50}
+        max: {x: 0, y: 7.5, z: 50}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_RDigit42
+      humanName: Right Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: -45}
+        max: {x: 0, y: 0, z: 45}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_RDigit43
+      humanName: Right Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: -45}
+        max: {x: 0, y: 0, z: 45}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_RDigit51
+      humanName: Right Ring Proximal
+      limit:
+        min: {x: 0, y: -7.5, z: -50}
+        max: {x: 0, y: 7.5, z: 50}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_RDigit52
+      humanName: Right Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: -45}
+        max: {x: 0, y: 0, z: 45}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_RDigit53
+      humanName: Right Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: -45}
+        max: {x: 0, y: 0, z: 45}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cloth_Spine3
+      humanName: UpperChest
+      limit:
+        min: {x: -20, y: -20, z: -20}
+        max: {x: 20, y: 20, z: 20}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: SM_Jason(Clone)
+      parentName: 
+      position: {x: 0, y: 0.487, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cloth_
+      parentName: SM_Jason(Clone)
+      position: {x: -0, y: -0.0022712098, z: -0.05062488}
+      rotation: {x: 0.50000006, y: -0.5, z: -0.4999999, w: 0.5}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cloth_LPalmGizmo
+      parentName: SM_Jason(Clone)
+      position: {x: -0.6860954, y: 1.3767463, z: -0.010110678}
+      rotation: {x: -0.038741577, y: 0.2356754, z: 0.1393092, w: 0.9610147}
+      scale: {x: 1, y: 0.999997, z: 1.000003}
+    - name: Cloth_LPlatform
+      parentName: SM_Jason(Clone)
+      position: {x: -0.16748026, y: 0, z: -0.10614773}
+      rotation: {x: 0.55141515, y: -0.55141515, z: -0.4426526, w: 0.4426526}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cloth_Pelvis
+      parentName: SM_Jason(Clone)
+      position: {x: -5.684342e-16, y: 0.561654, z: 0}
+      rotation: {x: 0.49912703, y: -0.5008716, z: -0.4991269, w: 0.5008715}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
+    - name: Cloth_LThigh1
+      parentName: Cloth_Pelvis
+      position: {x: 0.17857872, y: -0.06142351, z: 0.10957624}
+      rotation: {x: -0.021276295, y: 0.99919915, z: -0.006937504, w: 0.03317085}
+      scale: {x: 1, y: 0.9999998, z: 0.99999964}
+    - name: Cloth_LThigh2
+      parentName: Cloth_LThigh1
+      position: {x: -0.12430122, y: 0, z: 0}
+      rotation: {x: 0.0009695309, y: 0.0000000074505797, z: -0.000000055879347, w: 0.9999996}
+      scale: {x: 1.0000004, y: 1.0000005, z: 1.000001}
+    - name: Cloth_LThigh3
+      parentName: Cloth_LThigh2
+      position: {x: -0.12430114, y: -0.0000000023841857, z: 0.000000019073486}
+      rotation: {x: 0.29803047, y: 0.0134652015, z: -0.019857416, w: 0.95425475}
+      scale: {x: 1.0000001, y: 1.0000004, z: 1.0000001}
+    - name: Cloth_LCalf1
+      parentName: Cloth_LThigh3
+      position: {x: -0.124300875, y: -0.0000012254715, z: 0.0000030136107}
+      rotation: {x: 0.0009772201, y: -0.0008070189, z: 0.08946436, w: 0.9959892}
+      scale: {x: 1.0000008, y: 0.9999997, z: 0.99999994}
+    - name: Cloth_LCalf2
+      parentName: Cloth_LCalf1
+      position: {x: -0.15730122, y: 0, z: 0}
+      rotation: {x: -0.041754033, y: -0.00000002142042, z: 0.00000006488153, w: 0.999128}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000001}
+    - name: Cloth_LCalf3
+      parentName: Cloth_LCalf2
+      position: {x: -0.15730117, y: 0, z: 0}
+      rotation: {x: -0.07742659, y: 0.0000000056170433, z: 0.000000006668376, w: 0.9969981}
+      scale: {x: 1.0000002, y: 1.0000001, z: 1.0000002}
+    - name: Cloth_LFoot
+      parentName: Cloth_LCalf3
+      position: {x: -0.15730119, y: 0, z: 0}
+      rotation: {x: -0.030068908, y: 0.038583543, z: -0.686568, w: 0.72541827}
+      scale: {x: 1.0000006, y: 0.9999991, z: 1.0000006}
+    - name: Cloth_LToe1
+      parentName: Cloth_LFoot
+      position: {x: -0.110278964, y: -0.000038113594, z: 0.000011844635}
+      rotation: {x: -0.000055767578, y: 0.00089373783, z: -0.084443465, w: 0.9964279}
+      scale: {x: 0.9999998, y: 0.99999994, z: 0.9999998}
+    - name: Cloth_RThigh1
+      parentName: Cloth_Pelvis
+      position: {x: 0.1785788, y: -0.061423607, z: -0.109576225}
+      rotation: {x: -0.02010432, y: 0.9992277, z: 0.007097811, w: -0.033007417}
+      scale: {x: 0.99999976, y: 1, z: 0.99999994}
+    - name: Cloth_RThigh2
+      parentName: Cloth_RThigh1
+      position: {x: -0.12430122, y: 0.000000028610229, z: 0.000000057220458}
+      rotation: {x: -0.0008953872, y: 0.00000000372529, z: -0.000000040978193, w: 0.99999964}
+      scale: {x: 1.0000007, y: 1.0000002, z: 1.0000004}
+    - name: Cloth_RThigh3
+      parentName: Cloth_RThigh2
+      position: {x: -0.12430122, y: 0.000000030994414, z: 0.000000057220458}
+      rotation: {x: -0.30897823, y: -0.013249066, z: -0.020488432, w: 0.95075613}
+      scale: {x: 1, y: 1.0000001, z: 1}
+    - name: Cloth_RCalf1
+      parentName: Cloth_RThigh3
+      position: {x: -0.12430084, y: -0.0000008535385, z: 0.000003376007}
+      rotation: {x: -0.0008352811, y: 0.0004173664, z: 0.08730032, w: 0.99618167}
+      scale: {x: 0.99999946, y: 1.0000014, z: 1.0000004}
+    - name: Cloth_RCalf2
+      parentName: Cloth_RCalf1
+      position: {x: -0.15725048, y: 0, z: 0}
+      rotation: {x: 0.04156378, y: -0.0000000066647763, z: -0.000000033210878, w: 0.9991359}
+      scale: {x: 1.0000001, y: 1.0000004, z: 1.0000005}
+    - name: Cloth_RCalf3
+      parentName: Cloth_RCalf2
+      position: {x: -0.15725042, y: -0.000000009536743, z: 0}
+      rotation: {x: 0.07707429, y: -0.000000040551395, z: 0.00000010685291, w: 0.9970254}
+      scale: {x: 1.0000002, y: 1, z: 1}
+    - name: Cloth_RFoot
+      parentName: Cloth_RCalf3
+      position: {x: -0.15725043, y: -0.000000014305114, z: -0.000000019073486}
+      rotation: {x: 0.030943364, y: -0.03653777, z: -0.68608564, w: 0.72594357}
+      scale: {x: 0.9999983, y: 0.9999991, z: 1.0000031}
+    - name: Cloth_RToe1
+      parentName: Cloth_RFoot
+      position: {x: -0.11020637, y: -0.000010495186, z: 0.00032592771}
+      rotation: {x: 0.00018624023, y: -0.0024312632, z: -0.08425794, w: 0.996441}
+      scale: {x: 1.0000006, y: 0.99999976, z: 1.0000008}
+    - name: Cloth_Spine1
+      parentName: Cloth_Pelvis
+      position: {x: -0.0800518, y: 0.00027905047, z: -0.0000000022931317}
+      rotation: {x: 0.0006713122, y: 0.00004592538, z: -0.001915887, w: 0.999998}
+      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+    - name: Cloth_Spine2
+      parentName: Cloth_Spine1
+      position: {x: -0.07994461, y: 0, z: 0}
+      rotation: {x: -0.0038344702, y: -0.0007435691, z: 0.2445979, w: 0.9696167}
+      scale: {x: 0.9999998, y: 1.0000008, z: 0.9999999}
+    - name: Cloth_Spine3
+      parentName: Cloth_Spine2
+      position: {x: -0.097742304, y: 0, z: 2.9802322e-10}
+      rotation: {x: -0.00008167186, y: 0.00005031679, z: -0.021716954, w: 0.99976414}
+      scale: {x: 1.0000006, y: 0.99999994, z: 1.0000006}
+    - name: Cloth_Spine4
+      parentName: Cloth_Spine3
+      position: {x: -0.10437141, y: 0.000000076293944, z: 0}
+      rotation: {x: -0.007013276, y: -0.00009846687, z: 0.2808431, w: -0.9597281}
+      scale: {x: 1, y: 1.0000002, z: 1.0000001}
+    - name: Cloth_Ribcage
+      parentName: Cloth_Spine4
+      position: {x: -0.19731429, y: 0, z: -7.4505804e-11}
+      rotation: {x: 0.003954349, y: 0.000106677224, z: 0.00013782526, w: -0.99999225}
+      scale: {x: 0.9999992, y: 0.9999991, z: 1}
+    - name: Cloth_LCollarbone
+      parentName: Cloth_Ribcage
+      position: {x: 0.13312271, y: -0.000011825561, z: 0.06608418}
+      rotation: {x: -0.131617, y: 0.58880687, z: 0.030310977, w: 0.7969095}
+      scale: {x: 0.99999994, y: 0.9999999, z: 0.9999998}
+    - name: Cloth_LUpperarm1
+      parentName: Cloth_LCollarbone
+      position: {x: -0.14429504, y: 0.000000038146972, z: 0}
+      rotation: {x: -0.049804788, y: 0.16316038, z: 0.10350131, w: 0.9798907}
+      scale: {x: 1, y: 1.0000004, z: 0.99999964}
+    - name: Cloth_LUpperarm2
+      parentName: Cloth_LUpperarm1
+      position: {x: -0.08607984, y: 0, z: -0.00000015258789}
+      rotation: {x: 0.018880337, y: -0.000000007450581, z: -0.000000014901161, w: 0.9998218}
+      scale: {x: 1, y: 0.9999997, z: 0.9999999}
+    - name: Cloth_LUpperarm3
+      parentName: Cloth_LUpperarm2
+      position: {x: -0.086079806, y: 0.000000038146972, z: 0}
+      rotation: {x: 0.032986764, y: 0.0053059245, z: 0.034530003, w: 0.99884504}
+      scale: {x: 1.0000001, y: 0.9999999, z: 0.99999964}
+    - name: Cloth_LForearm1
+      parentName: Cloth_LUpperarm3
+      position: {x: -0.086079784, y: 0, z: 0}
+      rotation: {x: 0.018571079, y: -0.090405926, z: -0.15696234, w: 0.9832827}
+      scale: {x: 0.99999917, y: 1.0000008, z: 1.0000008}
+    - name: Cloth_LForearm2
+      parentName: Cloth_LForearm1
+      position: {x: -0.08803814, y: -0.0000010681152, z: 0.0000012207031}
+      rotation: {x: 0.01975548, y: 0.000000104308114, z: -0.000000030850057, w: 0.9998049}
+      scale: {x: 0.9999998, y: 1.0000027, z: 0.9999995}
+    - name: Cloth_LForearm3
+      parentName: Cloth_LForearm2
+      position: {x: -0.08803804, y: -0.0000010108947, z: 0.0000012207031}
+      rotation: {x: 0.03665384, y: -0.0000000654697, z: 0.00000002011745, w: 0.9993281}
+      scale: {x: 1.0000001, y: 1.0000031, z: 0.9999979}
+    - name: Cloth_LPalm
+      parentName: Cloth_LForearm3
+      position: {x: -0.08803802, y: -0.0000009155273, z: 0.000001373291}
+      rotation: {x: -0.6886677, y: 0.11055501, z: -0.015519578, w: 0.7164311}
+      scale: {x: 1.0000012, y: 0.9999928, z: 1.0000055}
+    - name: Cloth_LDigit11
+      parentName: Cloth_LPalm
+      position: {x: -0.092247464, y: -0.022999419, z: 0.04131359}
+      rotation: {x: 0.2433683, y: 0.28042728, z: 0.12527281, w: 0.92002136}
+      scale: {x: 1.0000069, y: 0.9999883, z: 1.0000077}
+    - name: Cloth_LDigit12
+      parentName: Cloth_LDigit11
+      position: {x: -0.050722275, y: -0.0000005340576, z: 0.00000015258789}
+      rotation: {x: -0.0076367212, y: -0.09983568, z: 0.075871676, w: 0.9920777}
+      scale: {x: 1.0000135, y: 0.9999832, z: 1.000004}
+    - name: Cloth_LDigit21
+      parentName: Cloth_LPalm
+      position: {x: -0.15639968, y: 0.00000045776366, z: 0.024841556}
+      rotation: {x: -0.008234043, y: 0.23980995, z: -0.029773345, w: 0.9703283}
+      scale: {x: 1.000009, y: 0.9999868, z: 1.000005}
+    - name: Cloth_LDigit22
+      parentName: Cloth_LDigit21
+      position: {x: -0.032844808, y: -0.00000045776366, z: -0.00000022888183}
+      rotation: {x: -0.0000010710198, y: -0.000000044703437, z: 0.035143275, w: 0.9993824}
+      scale: {x: 1.0000168, y: 0.9999777, z: 1.0000054}
+    - name: Cloth_LDigit23
+      parentName: Cloth_LDigit22
+      position: {x: -0.032720793, y: -0.00000015258789, z: -0.0000001335144}
+      rotation: {x: -0.03915255, y: 0.023150655, z: 0.03796981, w: 0.99824315}
+      scale: {x: 1.0000179, y: 0.9999794, z: 1.0000038}
+    - name: Cloth_LDigit31
+      parentName: Cloth_LPalm
+      position: {x: -0.15119953, y: 0.0046676635, z: -0.0018520164}
+      rotation: {x: 0.02064748, y: -0.08051162, z: 0.044645987, w: 0.9955392}
+      scale: {x: 1.0000111, y: 0.9999857, z: 1.000004}
+    - name: Cloth_LDigit32
+      parentName: Cloth_LDigit31
+      position: {x: -0.035234068, y: -0.00000045776366, z: -0.00000020980835}
+      rotation: {x: -0.0000008977939, y: -0.00000043958374, z: 0.03353523, w: 0.9994376}
+      scale: {x: 1.0000192, y: 0.9999771, z: 1.0000045}
+    - name: Cloth_LDigit33
+      parentName: Cloth_LDigit32
+      position: {x: -0.035825234, y: 0, z: -0.000000085830685}
+      rotation: {x: -0.00000033082384, y: 0.000000505399, z: 0.029772814, w: 0.9995567}
+      scale: {x: 1.0000186, y: 0.99997723, z: 1.0000042}
+    - name: Cloth_LDigit41
+      parentName: Cloth_LPalm
+      position: {x: -0.14062199, y: 0.00000015258789, z: -0.024835853}
+      rotation: {x: 0.014735985, y: -0.13449644, z: 0.030292887, w: 0.99034137}
+      scale: {x: 1.0000137, y: 0.99998814, z: 1.0000005}
+    - name: Cloth_LDigit42
+      parentName: Cloth_LDigit41
+      position: {x: -0.03553074, y: -0.00000030517577, z: -0.00000018596648}
+      rotation: {x: -0.0000023627626, y: -0.0000013113006, z: 0.033483516, w: 0.9994393}
+      scale: {x: 1.000013, y: 0.99998736, z: 1.0000005}
+    - name: Cloth_LDigit43
+      parentName: Cloth_LDigit42
+      position: {x: -0.028982047, y: 0, z: -0.000000028610229}
+      rotation: {x: -0.0000021961494, y: -0.00000044106892, z: 0.121735275, w: 0.99256265}
+      scale: {x: 1.0000294, y: 0.99997056, z: 1.0000015}
+    - name: Cloth_LDigit51
+      parentName: Cloth_LPalm
+      position: {x: -0.12233722, y: -0.004797363, z: -0.043948438}
+      rotation: {x: -0.0016745013, y: -0.15493844, z: 0.00605795, w: 0.9879042}
+      scale: {x: 1.000014, y: 0.99999017, z: 0.9999973}
+    - name: Cloth_LDigit52
+      parentName: Cloth_LDigit51
+      position: {x: -0.032211304, y: -0.00000030517577, z: -0.0000001785159}
+      rotation: {x: -0.0000024504234, y: -0.000004321332, z: 0.033440895, w: 0.9994407}
+      scale: {x: 1.0000184, y: 0.9999838, z: 0.99999887}
+    - name: Cloth_LDigit53
+      parentName: Cloth_LDigit52
+      position: {x: -0.022309303, y: 0.00000015258789, z: -0.000000011026859}
+      rotation: {x: -0.0000002275515, y: 0.0000013221887, z: -0.011603478, w: 0.9999327}
+      scale: {x: 1.0000147, y: 0.99998796, z: 0.9999992}
+    - name: Cloth_Neck
+      parentName: Cloth_Ribcage
+      position: {x: 0.0000015258788, y: -0.000011816024, z: -0.00000032640918}
+      rotation: {x: -0.000000016763801, y: -0.0000021565786, z: -0.18620689, w: 0.98251057}
+      scale: {x: 0.9999998, y: 1.0000002, z: 0.99999994}
+    - name: Cloth_Head
+      parentName: Cloth_Neck
+      position: {x: -0.12813431, y: 0, z: -2.6193446e-12}
+      rotation: {x: -0.00000067838005, y: -0.0000010542568, z: 0.24529931, w: 0.96944743}
+      scale: {x: 1.0000002, y: 0.99999976, z: 1.0000002}
+    - name: Cloth_RCollarbone
+      parentName: Cloth_Ribcage
+      position: {x: 0.13312271, y: -0.000011844635, z: -0.066084825}
+      rotation: {x: -0.13159499, y: 0.58882445, z: -0.030344138, w: -0.7968988}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000006}
+    - name: Cloth_RUpperarm1
+      parentName: Cloth_RCollarbone
+      position: {x: -0.14429516, y: 0.000000038146972, z: 0.00000015258789}
+      rotation: {x: -0.003069631, y: -0.16849752, z: 0.09453416, w: 0.98115367}
+      scale: {x: 1.0000006, y: 1, z: 0.99999946}
+    - name: Cloth_RUpperarm2
+      parentName: Cloth_RUpperarm1
+      position: {x: -0.086091384, y: 0.000000019073486, z: 0}
+      rotation: {x: -0.019545205, y: -0.00000011920925, z: 0.000000018393614, w: 0.99980897}
+      scale: {x: 0.9999996, y: 0.9999997, z: 1.0000007}
+    - name: Cloth_RUpperarm3
+      parentName: Cloth_RUpperarm2
+      position: {x: -0.086091384, y: 0, z: 0}
+      rotation: {x: -0.034217313, y: -0.009075515, z: 0.03378425, w: 0.99880207}
+      scale: {x: 1.0000004, y: 1.0000006, z: 1.0000004}
+    - name: Cloth_RForearm1
+      parentName: Cloth_RUpperarm3
+      position: {x: -0.08609142, y: -0.0000000047683715, z: 0}
+      rotation: {x: -0.019222535, y: 0.10736119, z: -0.14598152, w: 0.98325664}
+      scale: {x: 1.0000026, y: 1.0000007, z: 0.99999994}
+    - name: Cloth_RForearm2
+      parentName: Cloth_RForearm1
+      position: {x: -0.08804128, y: 0.00000015258789, z: -0.00000030517577}
+      rotation: {x: -0.005120088, y: 0.00000002235173, z: 0.000000024912865, w: 0.9999869}
+      scale: {x: 1.0000017, y: 1.0000006, z: 0.99999875}
+    - name: Cloth_RForearm3
+      parentName: Cloth_RForearm2
+      position: {x: -0.08804122, y: 0.00000019073485, z: -0.00000030517577}
+      rotation: {x: -0.009500858, y: 0.00000005253161, z: -0.000000027183797, w: 0.9999549}
+      scale: {x: 1.0000011, y: 0.99999994, z: 0.9999975}
+    - name: Cloth_RPalm
+      parentName: Cloth_RForearm3
+      position: {x: -0.08804127, y: 0.00000017166137, z: -0.00000015258789}
+      rotation: {x: 0.6990884, y: -0.110196695, z: -0.017166195, w: 0.7062842}
+      scale: {x: 1.0000021, y: 0.99999785, z: 0.99999934}
+    - name: Cloth_RDigit11
+      parentName: Cloth_RPalm
+      position: {x: -0.09224071, y: -0.02294342, z: -0.041312695}
+      rotation: {x: -0.24331495, y: -0.28054246, z: 0.12515812, w: 0.92001593}
+      scale: {x: 1.0000032, y: 1.0000048, z: 0.9999926}
+    - name: Cloth_RDigit12
+      parentName: Cloth_RDigit11
+      position: {x: -0.050721586, y: 0.00000015258789, z: 0.00000015258789}
+      rotation: {x: -0.0014853467, y: 0.10020375, z: -0.014467829, w: 0.99486065}
+      scale: {x: 0.9999991, y: 1.000004, z: 0.99999774}
+    - name: Cloth_RDigit21
+      parentName: Cloth_RPalm
+      position: {x: -0.15639491, y: 0.00006866455, z: -0.024840832}
+      rotation: {x: 0.008234109, y: -0.2398498, z: -0.029797297, w: 0.97031766}
+      scale: {x: 1.0000046, y: 0.9999972, z: 0.9999997}
+    - name: Cloth_RDigit22
+      parentName: Cloth_RDigit21
+      position: {x: -0.032844275, y: 0, z: 0.000000028610229}
+      rotation: {x: 0.0000024531023, y: 0.0000021159635, z: 0.035136603, w: 0.9993826}
+      scale: {x: 1.0000004, y: 1.0000014, z: 0.99999994}
+    - name: Cloth_RDigit23
+      parentName: Cloth_RDigit22
+      position: {x: -0.032723274, y: 0, z: 0.000000095367426}
+      rotation: {x: -0.0000007418534, y: -0.0000008628452, z: -0.06586225, w: 0.9978288}
+      scale: {x: 1.0000035, y: 0.99999744, z: 0.99999946}
+    - name: Cloth_RDigit31
+      parentName: Cloth_RPalm
+      position: {x: -0.15119235, y: 0.0047242735, z: 0.0018498611}
+      rotation: {x: -0.020646706, y: 0.08049673, z: 0.044611722, w: 0.99554205}
+      scale: {x: 1.0000044, y: 0.9999968, z: 1}
+    - name: Cloth_RDigit32
+      parentName: Cloth_RDigit31
+      position: {x: -0.03523346, y: -0.00000015258789, z: 0.000000028610229}
+      rotation: {x: 0.000003878024, y: -0.0000009909264, z: 0.03352929, w: 0.9994378}
+      scale: {x: 0.99999934, y: 1.0000026, z: 0.99999934}
+    - name: Cloth_RDigit33
+      parentName: Cloth_RDigit32
+      position: {x: -0.035823938, y: 0, z: 0.00000012397766}
+      rotation: {x: -0.00000079762185, y: -0.0000006723136, z: -0.047567073, w: 0.99886805}
+      scale: {x: 1.0000051, y: 0.9999949, z: 0.99999887}
+    - name: Cloth_RDigit41
+      parentName: Cloth_RPalm
+      position: {x: -0.14061412, y: 0.000057983398, z: 0.024834098}
+      rotation: {x: -0.014738701, y: 0.134467, z: 0.030255405, w: 0.9903465}
+      scale: {x: 1.0000038, y: 0.99999636, z: 1.0000011}
+    - name: Cloth_RDigit42
+      parentName: Cloth_RDigit41
+      position: {x: -0.03553028, y: 0, z: -0.000000009536743}
+      rotation: {x: 0.000004183497, y: -0.000001013278, z: 0.033476066, w: 0.99943954}
+      scale: {x: 1.0000088, y: 0.99999034, z: 0.9999986}
+    - name: Cloth_RDigit43
+      parentName: Cloth_RDigit42
+      position: {x: -0.028981246, y: 0.00000015258789, z: 0.000000052452087}
+      rotation: {x: 0.0000007080235, y: 0.0000004854341, z: 0.035595484, w: 0.9993663}
+      scale: {x: 1.0000073, y: 0.99999297, z: 0.9999991}
+    - name: Cloth_RDigit51
+      parentName: Cloth_RPalm
+      position: {x: -0.12232941, y: -0.004738159, z: 0.04394785}
+      rotation: {x: 0.0017040962, y: 0.15485957, z: 0.0060850694, w: 0.9879163}
+      scale: {x: 1.0000014, y: 0.99999654, z: 1.000002}
+    - name: Cloth_RDigit52
+      parentName: Cloth_RDigit51
+      position: {x: -0.032210615, y: -0.00000015258789, z: -0.000000026226044}
+      rotation: {x: -0.000003768711, y: 0.00003153084, z: 0.033446055, w: 0.9994406}
+      scale: {x: 1.0000024, y: 0.9999971, z: 1.0000007}
+    - name: Cloth_RDigit53
+      parentName: Cloth_RDigit52
+      position: {x: -0.022305373, y: -0.00000015258789, z: 0.000000033676624}
+      rotation: {x: 0.000014023298, y: -0.000113576694, z: -0.1313267, w: 0.99133915}
+      scale: {x: 0.9999996, y: 1, z: 1.0000007}
+    - name: Cloth_PelvisGizmo
+      parentName: SM_Jason(Clone)
+      position: {x: -5.684342e-16, y: 1.068242, z: 0}
+      rotation: {x: 0.49912703, y: -0.50087154, z: -0.49912694, w: 0.5008715}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cloth_RibcageGizmo
+      parentName: SM_Jason(Clone)
+      position: {x: -0.00000032562295, y: 1.5933878, z: -0.11255453}
+      rotation: {x: 0.50000006, y: -0.5, z: -0.4999999, w: 0.5}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cloth_RPalmGizmo
+      parentName: SM_Jason(Clone)
+      position: {x: 0.68608624, y: 1.3766972, z: -0.010104232}
+      rotation: {x: 0.13930589, y: 0.96101457, z: -0.03874459, w: 0.23567714}
+      scale: {x: 1.000001, y: 0.999999, z: 1}
+    - name: Cloth_RPlatform
+      parentName: SM_Jason(Clone)
+      position: {x: 0.16748023, y: 0, z: -0.10614774}
+      rotation: {x: 0.44265258, y: -0.44265258, z: -0.55141515, w: 0.55141515}
+      scale: {x: 1, y: 1, z: 1}
+    - name: SM_Jason
+      parentName: SM_Jason(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cloth_RPlatformGizmo
+      parentName: SM_Jason(Clone)
+      position: {x: 0.16748023, y: -0.487, z: -0.10614774}
+      rotation: {x: 0.44265258, y: -0.44265258, z: -0.55141515, w: 0.55141515}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cloth_LPlatformGizmo
+      parentName: SM_Jason(Clone)
+      position: {x: -0.16748026, y: -0.487, z: -0.10614773}
+      rotation: {x: 0.55141515, y: -0.55141515, z: -0.4426526, w: 0.4426526}
+      scale: {x: 1, y: 1, z: 1}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -108,13 +871,13 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 2
+  animationType: 3
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
