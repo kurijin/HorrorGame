@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 /// <summary>
@@ -6,37 +6,53 @@ using UnityEngine.InputSystem;
 /// 移動は前と後ろ,カメラで当たりを見渡す。
 /// 歩く時に音をつける。
 /// </summary>
+
 public class Player : MonoBehaviour
 {
     //キャラクターの移動に関するもの
     private CharacterController _characterController;
     private Vector2 _moveInput; 
     private Vector3 _moveDirection;
-    [SerializeField] private float _moveSpeed = 5f;
+    private float _moveSpeed;
+    private bool isRunnig = false;
+    [SerializeField,Header("スタミナ減少率")] private float _consumeStamina = 0.1f;
+    [SerializeField,Header("プレイヤーの歩行速度")] private float _walkSpeed = 3f;
+    [SerializeField, Header("プレイヤーの走る速度")] private float _runSpeed = 5f;
 
     //カメラに関するパラメータ
     private Vector2 _lookInput;
-    [SerializeField] private Camera _camera;
-    [SerializeField] private float _lookSensitivity = 0.5f; //カーソル感度
-    [SerializeField] private float _maxLookAngle = 60f; //上下の見れる角度の制限
+    [SerializeField,Header("顔の前についているカメラ")] private Camera _camera;
+    [SerializeField,Header("感度")] private float _lookSensitivity = 0.5f; 
+    [SerializeField,Header("上下で見れる角度")] private float _maxLookAngle = 60f; 
     private float _verticalRotation = 0f;
 
     //アニメーション
     private Animator _animator;
 
     //音声に関するもの
-    [SerializeField] private SoundManager _soundManager;
-    [SerializeField] private AudioClip _walkSound;
+    [SerializeField,Header("歩行音")] private AudioClip _walkSound;
+
+    private PlayerHealth _playerHealth;
 
 
     void Start()
     {
         _characterController = GetComponent<CharacterController>();
         _animator = GetComponent<Animator>();
+        _playerHealth = GetComponent<PlayerHealth>();
     }
 
     void Update()
     {
+        if (isRunnig && _playerHealth.GetStamina() > 0)
+        {
+            _moveSpeed = _runSpeed;
+            _playerHealth.ConsumeStamina(_consumeStamina);
+        }
+        else
+        {
+            _moveSpeed = _walkSpeed;
+        }
         //前後の移動に限定
         _moveDirection = transform.forward * _moveInput.y;
 
@@ -51,13 +67,13 @@ public class Player : MonoBehaviour
             {
                 transform.forward = _moveDirection; 
             }
-            _animator.SetFloat("Speed", _moveDirection.magnitude); 
-            _soundManager.PlaySE(_walkSound);
+            _animator.SetFloat("Speed", _moveSpeed); 
+            SoundManager.Instance.PlaySE(_walkSound);
         }
         else
         {
             _animator.SetFloat("Speed", 0); 
-            _soundManager.StopSE();
+            SoundManager.Instance.StopSE();
         }
 
         _characterController.Move(_moveDirection * _moveSpeed * Time.deltaTime);
@@ -67,6 +83,20 @@ public class Player : MonoBehaviour
     {
         //InputActionからMoveを受け取る
         _moveInput = context.ReadValue<Vector2>();
+    }
+
+    public void OnRun(InputAction.CallbackContext context)
+    {
+        switch (context.phase)
+        {
+            case InputActionPhase.Performed:
+                isRunnig = true;
+                break;
+
+            case InputActionPhase.Canceled:
+                isRunnig = false;
+                break;
+        }
     }
 
     public void OnLook(InputAction.CallbackContext context)
