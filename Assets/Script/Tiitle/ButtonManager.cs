@@ -17,7 +17,7 @@ public class ButtonManager : MonoBehaviour
     // 最初の画面のPlay
     public void OnClickPlay()
     {
-        PlaySoundAndPushPageAsync("CreditPage").Forget();
+        PlaySoundAndPushPageAsync("FirstDialoguePage").Forget();
     }
 
     // クレジットボタン

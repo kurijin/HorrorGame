@@ -8,7 +8,10 @@ public class SoundManager : MonoBehaviour
     public static SoundManager Instance { get; private set; }
 
     public AudioSource audioSourceSE;  
-    public AudioSource audioSourceBGM;  
+    public AudioSource audioSourceBGM; 
+
+    //何か別の音量で流す予備のSE
+    public AudioSource audioSourceSE2;  
 
     private void Awake()
     {
@@ -18,16 +21,20 @@ public class SoundManager : MonoBehaviour
             DontDestroyOnLoad(this.gameObject); 
 
             AudioSource[] audioSources = GetComponents<AudioSource>();
-            audioSourceSE = audioSources[1];
-            audioSourceBGM = audioSources[0];
+            audioSourceSE = audioSources[0];
+            audioSourceBGM = audioSources[1];
+            audioSourceSE2 = audioSources[2];
         }
         else
         {
             Destroy(this.gameObject);
         }
     }
-    
-    //BGMに関するメソッド
+
+    /// <summary>
+    /// BGMに関するメソッド
+    /// </summary>
+    /// <param name="_bgmClip">BGMの名前(他スクリプトから渡す)</param>
     public void PlayBGM(AudioClip _bgmClip)
     {
         audioSourceBGM.clip = _bgmClip;  
@@ -38,7 +45,10 @@ public class SoundManager : MonoBehaviour
         audioSourceBGM.Stop();         
     }
 
-    //SEに関するメソッド
+    /// <summary>
+    ///  SEに関するメソッド
+    /// </summary>
+    /// <param name="_seClip">SEの名前(他スクリプトから渡す)</param>
     public void PlaySE(AudioClip _seClip)
     {
          audioSourceSE.PlayOneShot(_seClip);
@@ -46,5 +56,13 @@ public class SoundManager : MonoBehaviour
     public void StopSE()
     {
          audioSourceSE.Stop();
+    }
+    public void PlaySE2(AudioClip _seClip)
+    {
+         audioSourceSE2.PlayOneShot(_seClip);
+    }
+    public void StopSE2()
+    {
+         audioSourceSE2.Stop();
     }
 }
