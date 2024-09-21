@@ -3,10 +3,14 @@ using UnityScreenNavigator.Runtime.Core.Page;
 using UnityEngine.UI;
 using Cysharp.Threading.Tasks;
 
+/// <summary>
+/// タイトル画面のボタンの管理
+/// ScreenNavigatorで都度PushとPop
+/// ボタンを押したら音とパーティクル
+/// </summary>
 public class ButtonManager : MonoBehaviour
 {
-    //[SerializeField, Header("サウンドマネージャーのオブジェクト")] private SoundManager _soundManager;
-    //[SerializeField, Header("ボタンのクリック音")] private AudioClip _buttonSE;
+    [SerializeField, Header("ボタンのクリック音")] private AudioClip _buttonSE;
     [SerializeField, Header("シーン管理のCanvasのスクリプト参照(page)")] private PageContainer _pageContainer;
     [SerializeField, Header("クリック時のパーティクル")] private GameObject _clickParticle; 
 
@@ -34,25 +38,24 @@ public class ButtonManager : MonoBehaviour
         PlaySoundAndPushPageAsync("SettingsPage").Forget();
     }
 
-    // 共通のメソッド(ページ)
-    private async UniTask PlaySoundAndPushPageAsync(string pageName)
-    {
-        //_soundManager.PlaySE(_buttonSE);
-        ClickParticle(_clickParticle);
-        // ページ遷移
-        await _pageContainer.Push(pageName, true);
-    }
-
     // 共通のBackボタン
     public void OnClickBacktoTitle()
     {
         BackToTitleAsync().Forget();
     }
 
+    // 共通のメソッド(ページ)
+    private async UniTask PlaySoundAndPushPageAsync(string pageName)
+    {
+        SoundManager.Instance.PlaySE(_buttonSE);
+        ClickParticle(_clickParticle);
+        // ページ遷移
+        await _pageContainer.Push(pageName, true);
+    }
 
     private async UniTask BackToTitleAsync()
     {
-        //_soundManager.PlaySE(_buttonSE);
+        SoundManager.Instance.PlaySE(_buttonSE);
         ClickParticle(_clickParticle);
         await _pageContainer.Pop(true);
     }
