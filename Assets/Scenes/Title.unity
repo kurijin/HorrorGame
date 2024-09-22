@@ -677,7 +677,7 @@ PrefabInstance:
     - target: {fileID: 7579064151229248680, guid: 5f7141a6ef5864027bbf199848d8571b, type: 3}
       propertyPath: _buttonSE
       value: 
-      objectReference: {fileID: 8300000, guid: b3181a3bc4d1d4182a4d01ccb83860c6, type: 3}
+      objectReference: {fileID: 8300000, guid: 518f2f332e3d141c8ab5095807d2a2c0, type: 3}
     - target: {fileID: 7579064151229248680, guid: 5f7141a6ef5864027bbf199848d8571b, type: 3}
       propertyPath: _pageContainer
       value: 

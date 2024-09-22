@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 using Cysharp.Threading.Tasks;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// スタートボタンを押した時のダイアログ
@@ -25,6 +26,7 @@ public class FirstFlow : MonoBehaviour
         }
 
         RevealAllTextAsync().Forget();
+        SceneManager.LoadScene("InGame");
     }
 
     private async UniTask RevealAllTextAsync()
