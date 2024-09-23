@@ -48,8 +48,8 @@ public class StartUI : MonoBehaviour
     private async UniTask ShowMessagePanel(string message, float waitTime)
     {
         _panel.SetActive(true);
-        _text.text = message;
         SoundManager.Instance.PlaySE(_textSE);
+        _text.text = message;
         await UniTask.Delay(TimeSpan.FromSeconds(waitTime));
         _panel.SetActive(false);
     }

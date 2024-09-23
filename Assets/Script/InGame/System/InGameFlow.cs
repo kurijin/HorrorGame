@@ -26,21 +26,30 @@ public class InGameFlow : MonoBehaviour
     [SerializeField,Header("UIのinputsystemの参照")] private InputActionAsset inputActions;
 
 
-    private InputAction _fireAction;
+    private InputAction _submitAction;
+    private InputAction _pauseAction;
     private bool _isStart = true;
 
     private bool _isOK = false;
+    private bool _isPausing = false;
 
     private void Awake()
-    {
-        Instance = this;
+    {        
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(this.gameObject); 
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
         //プレイヤーの動きを制御
         _playerInputSystem.enabled = false;
 
-        //InputActionのイベント(submit)追加
-        _fireAction = inputActions.FindActionMap("UI").FindAction("Submit"); 
-        _fireAction.performed += OnPerformed; 
-        _fireAction.Enable();
+        //Pauseのインプットアクションは手動で追加
+        _pauseAction = inputActions.FindActionMap("UI").FindAction("Pause"); 
+        _pauseAction.performed += OnPause; 
     }
 
     //時間を空けてStartUIを表示
@@ -66,6 +75,15 @@ public class InGameFlow : MonoBehaviour
         _howToPlayUI.SetActive(true);
         await WaitForInput();
         _howToPlayUI.SetActive(false);
+
+        // ゲーム開始
+        _pauseAction.Enable();
+        _playerInputSystem.enabled = true;
+    }
+
+    public void End()
+    {
+        Debug.Log("a");
     }
 
 
@@ -81,11 +99,21 @@ public class InGameFlow : MonoBehaviour
         _isOK = false; 
     }
 
-    private void OnPerformed(InputAction.CallbackContext context)
+    public void OnSubmit(InputAction.CallbackContext context)
     {
         if (!_isOK)  
         {
             _isOK = true; 
         }
+    }
+
+    /// <summary>
+    /// トグルで処理
+    /// </summary>
+    public void OnPause(InputAction.CallbackContext context)
+    {
+        _isPausing = !_isPausing;
+        _playerInputSystem.enabled = !_isPausing;
+        _pauseUI.SetActive(_isPausing);
     }
 }
