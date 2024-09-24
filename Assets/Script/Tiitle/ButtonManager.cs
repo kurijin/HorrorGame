@@ -17,6 +17,7 @@ public class ButtonManager : MonoBehaviour
     // 最初の画面のPlay
     public void OnClickPlay()
     {
+        SoundManager.Instance.StopBGM();
         PlaySoundAndPushPageAsync("FirstDialoguePage").Forget();
     }
 

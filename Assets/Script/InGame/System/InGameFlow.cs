@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
 using Cysharp.Threading.Tasks;
@@ -13,6 +14,7 @@ public class InGameFlow : MonoBehaviour
     public static InGameFlow Instance { get; private set; }
 
     //UI参照
+    [SerializeField,Header("PlayerUI")] private GameObject _playerUI;
     [SerializeField,Header("スタートUI")] private GameObject _startUI;
     [SerializeField,Header("遊び方UI")] private GameObject _howToPlayUI;
     [SerializeField,Header("ポーズ画面UI")] private GameObject _pauseUI;
@@ -23,49 +25,72 @@ public class InGameFlow : MonoBehaviour
     [SerializeField,Header("プレイヤーのインプットアクション")] private PlayerInput _playerInputSystem;
     [SerializeField,Header("敵管理のゲームオブジェクト")] private GameObject _enemyManager;
 
-    [SerializeField,Header("UIのinputsystemの参照")] private InputActionAsset inputActions;
+    //　プレイヤーの動きを制御するもの
+    private PlayerInput _inputActions;
 
-
-    private InputAction _submitAction;
+    //ポーズ画面を開くアクションの追加のもの
     private InputAction _pauseAction;
-    private bool _isStart = true;
 
+    //スタートUIが開かれたかどうかを確認するもの
+    private bool _isStart;
+
+    //画面上にアクションにより消せるUIが出た時の確認するもの
     private bool _isOK = false;
+
+    //ポーズ中かどうかを確認する
     private bool _isPausing = false;
 
+    [SerializeField,Header("通常BGM")] private AudioClip _normalBGM;
+
     private void Awake()
-    {        
+    {      
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(this.gameObject); 
         }
-        else
-        {
-            Destroy(this.gameObject);
-        }
+
         //プレイヤーの動きを制御
         _playerInputSystem.enabled = false;
 
-        //Pauseのインプットアクションは手動で追加
-        _pauseAction = inputActions.FindActionMap("UI").FindAction("Pause"); 
+        //Pauseのインプットアクションは手動で追加  
+        _inputActions = GetComponent<PlayerInput>();      
+        _pauseAction = _inputActions.actions.FindActionMap("UI").FindAction("Pause");
         _pauseAction.performed += OnPause; 
+        _pauseAction.Disable();
     }
 
     //時間を空けてStartUIを表示
     private async void Start()
     {
-        await UniTask.Delay(TimeSpan.FromSeconds(2));
-        _startUI.SetActive(true);
-        _isStart = false; 
+        SoundManager.Instance.PlayBGM(_normalBGM);
+        switch (CheckPointManager.Instance.Check)
+        {
+            case 0:
+                await UniTask.Delay(TimeSpan.FromSeconds(2));
+                _startUI.SetActive(true);
+                _isStart = true;  
+                break;
+            case 1:
+                GameStart();
+                break;
+
+            default:
+                GameStart();
+                break;
+        }
     }
 
     private void  Update()
     {
-        if(!_startUI.activeSelf && !_isStart)
+        if(!_startUI.activeSelf && _isStart)
         {
-            _isStart = true;
+            _isStart = false;
             HowtoUI().Forget();
+        }
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            Retry();
         }
     }
 
@@ -75,10 +100,27 @@ public class InGameFlow : MonoBehaviour
         _howToPlayUI.SetActive(true);
         await WaitForInput();
         _howToPlayUI.SetActive(false);
+        CheckPointManager.Instance.Check = 1;
+        GameStart();
+    }
 
+    private void GameStart()
+    {
         // ゲーム開始
         _pauseAction.Enable();
+        _playerUI.SetActive(true);
         _playerInputSystem.enabled = true;
+        _enemyManager.SetActive(true);
+    }
+
+    public void GameOver()
+    {
+        Debug.Log("a");
+    }
+
+    public void Retry()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void End()
@@ -108,7 +150,7 @@ public class InGameFlow : MonoBehaviour
     }
 
     /// <summary>
-    /// トグルで処理
+    /// escキーを押すたびにポーズかどうかを切り替える
     /// </summary>
     public void OnPause(InputAction.CallbackContext context)
     {
