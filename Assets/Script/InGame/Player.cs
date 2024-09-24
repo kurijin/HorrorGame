@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
     //音声に関するもの
     [SerializeField,Header("歩行音")] private AudioClip _walkSound;
     [SerializeField,Header("走る音")] private AudioClip _runSound;
+
     /// <summary>
     /// walkのサウンド、runのサウンドどちらが流れているかを監視
     /// </summary>
@@ -49,35 +50,22 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+
         if (isRunnig && _playerHealth.GetStamina() > 0)
         {
             _moveSpeed = _runSpeed;
             _playerHealth.ConsumeStamina(_consumeStamina);
-            if (!isPlayingRunSound ) 
-            {
-                SoundManager.Instance.StopSE();
-                SoundManager.Instance.PlaySE(_runSound); 
-                isPlayingWalkSound = false;
-                isPlayingRunSound = true;
-            }
-
         }
         else
         {
             _moveSpeed = _walkSpeed;
-            if (!isPlayingWalkSound) 
-            {
-                SoundManager.Instance.StopSE();
-                SoundManager.Instance.PlaySE(_walkSound); 
-                isPlayingWalkSound = true;
-                isPlayingRunSound = false;
-            }
         }
         //前後の移動に限定
         _moveDirection = transform.forward * _moveInput.y;
 
         if (_moveDirection.magnitude > 0.1f)
         {
+
             ///後ろに下がる時はその方向を見たまま下がる。
             if(_moveInput.y < 0)
             {
@@ -93,8 +81,8 @@ public class Player : MonoBehaviour
         {
             _animator.SetFloat("Speed", 0); 
             SoundManager.Instance.StopSE();
-            isPlayingRunSound = false;
             isPlayingWalkSound = false;
+            isPlayingRunSound = false;
         }
 
         _characterController.Move(_moveDirection * _moveSpeed * Time.deltaTime);
@@ -104,12 +92,6 @@ public class Player : MonoBehaviour
     {
         //InputActionからMoveを受け取る
         _moveInput = context.ReadValue<Vector2>();
-        if (!isPlayingWalkSound) 
-        {
-            SoundManager.Instance.PlaySE(_walkSound); 
-            isPlayingWalkSound = true;
-            isPlayingRunSound = false;
-        }
     }
 
     public void OnRun(InputAction.CallbackContext context)
@@ -140,6 +122,35 @@ public class Player : MonoBehaviour
         _verticalRotation = Mathf.Clamp(_verticalRotation, -_maxLookAngle, _maxLookAngle);
 
         _camera.transform.localRotation = Quaternion.Euler(_verticalRotation, 0, 0);
+    }
+
+
+
+    /// <summary>
+    /// 歩行音アニメーションイベントで呼ぶもの
+    /// </summary>
+    
+    public void WalkSound()
+    {
+        if(!isPlayingWalkSound )
+        {
+            SoundManager.Instance.StopSE();
+            SoundManager.Instance.PlaySE(_walkSound);
+            isPlayingWalkSound = true;
+            isPlayingRunSound = false;
+        }
+
+    }
+
+    public void RunSound()
+    {
+        if(!isPlayingRunSound)
+        {
+            SoundManager.Instance.StopSE();
+            SoundManager.Instance.PlaySE(_runSound);
+            isPlayingRunSound = true;
+            isPlayingWalkSound = false;
+        }
     }
 
 }

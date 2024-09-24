@@ -51,6 +51,7 @@ public class SoundManager : MonoBehaviour
     /// <param name="_seClip">SEの名前(他スクリプトから渡す)</param>
     public void PlaySE(AudioClip _seClip)
     {
+        Debug.Log("Playing text SE");
          audioSourceSE.PlayOneShot(_seClip);
     }
     public void StopSE()

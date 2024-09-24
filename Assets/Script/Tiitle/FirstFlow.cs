@@ -15,7 +15,7 @@ public class FirstFlow : MonoBehaviour
     private string[] messages; // 各テキストの内容を保存する配列
     [SerializeField, Header("ダイアログのSE")] private AudioClip _dialogueSE; 
 
-    private void OnEnable()
+    private async void OnEnable()
     {
         // _dialogue のテキスト内容をmessageに移してテキストを初期化する
         messages = new string[_dialogue.Length];
@@ -25,7 +25,7 @@ public class FirstFlow : MonoBehaviour
             _dialogue[i].text = "";          
         }
 
-        RevealAllTextAsync().Forget();
+        await RevealAllTextAsync();
         SceneManager.LoadScene("InGame");
     }
 
