@@ -48,7 +48,7 @@ public class ButtonManager : MonoBehaviour
     // 共通のメソッド(ページ)
     private async UniTask PlaySoundAndPushPageAsync(string pageName)
     {
-        SoundManager.Instance.PlaySE(_buttonSE);
+        SoundManager.Instance.PlaySE3(_buttonSE);
         ClickParticle(_clickParticle);
         // ページ遷移
         await _pageContainer.Push(pageName, true);
@@ -56,7 +56,7 @@ public class ButtonManager : MonoBehaviour
 
     private async UniTask BackToTitleAsync()
     {
-        SoundManager.Instance.PlaySE(_buttonSE);
+        SoundManager.Instance.PlaySE3(_buttonSE);
         ClickParticle(_clickParticle);
         await _pageContainer.Pop(true);
     }

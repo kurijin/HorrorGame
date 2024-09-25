@@ -14,6 +14,7 @@ public class EnemyManager : MonoBehaviour
 
     private int _currentLevel;
     private float _elapsedTime;
+
     public static EnemyManager Instance { get; private set; }
 
     private void Awake()

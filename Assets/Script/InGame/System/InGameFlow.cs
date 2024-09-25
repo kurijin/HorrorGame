@@ -98,6 +98,7 @@ public class InGameFlow : MonoBehaviour
     {
         //遊び方のUI表示
         _howToPlayUI.SetActive(true);
+        _isOK = false;
         await WaitForInput();
         _howToPlayUI.SetActive(false);
         CheckPointManager.Instance.Check = 1;
@@ -120,6 +121,8 @@ public class InGameFlow : MonoBehaviour
 
     public void Retry()
     {
+        _pauseAction.performed -= OnPause;
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -151,11 +154,23 @@ public class InGameFlow : MonoBehaviour
 
     /// <summary>
     /// escキーを押すたびにポーズかどうかを切り替える
+    /// プレイヤーと敵の動きを止める
+    ///  処理が重くならないように,敵はEnemyManagerを確認してもし敵が出現しているならFindをする
     /// </summary>
     public void OnPause(InputAction.CallbackContext context)
     {
         _isPausing = !_isPausing;
+        if(_isPausing)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
+
         _playerInputSystem.enabled = !_isPausing;
         _pauseUI.SetActive(_isPausing);
+        _playerUI.SetActive(!_isPausing);
     }
 }

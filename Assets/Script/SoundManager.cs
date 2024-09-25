@@ -2,16 +2,19 @@ using UnityEngine;
 
 /// <summary>
 /// SoundManager全体を支えるもの、SoundManagerにはSEとBGM用にSourceをわけている
+/// SEを流すものは3個用意している,
+/// 1個目は主に多くの時間プレイヤーの足音など長く流れるもの.
+/// 2個目は主に単発のもの,喰らった音やアイテムゲットなどのシステム音
+/// 3個目は敵に関するもの
 /// </summary>
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance { get; private set; }
 
-    public AudioSource audioSourceSE;  
     public AudioSource audioSourceBGM; 
-
-    //何か別の音量で流す予備のSE
+    public AudioSource audioSourceSE;  
     public AudioSource audioSourceSE2;  
+    public AudioSource audioSourceSE3; 
 
     private void Awake()
     {
@@ -21,9 +24,10 @@ public class SoundManager : MonoBehaviour
             DontDestroyOnLoad(this.gameObject); 
 
             AudioSource[] audioSources = GetComponents<AudioSource>();
-            audioSourceSE = audioSources[0];
-            audioSourceBGM = audioSources[1];
+            audioSourceBGM = audioSources[0];
+            audioSourceSE = audioSources[1];
             audioSourceSE2 = audioSources[2];
+            audioSourceSE3 = audioSources[3];
         }
         else
         {
@@ -51,8 +55,7 @@ public class SoundManager : MonoBehaviour
     /// <param name="_seClip">SEの名前(他スクリプトから渡す)</param>
     public void PlaySE(AudioClip _seClip)
     {
-        Debug.Log("Playing text SE");
-         audioSourceSE.PlayOneShot(_seClip);
+        audioSourceSE.PlayOneShot(_seClip);
     }
     public void StopSE()
     {
@@ -65,5 +68,13 @@ public class SoundManager : MonoBehaviour
     public void StopSE2()
     {
          audioSourceSE2.Stop();
+    }
+    public void PlaySE3(AudioClip _seClip)
+    {
+         audioSourceSE3.PlayOneShot(_seClip);
+    }
+    public void StopSE3()
+    {
+         audioSourceSE3.Stop();
     }
 }
