@@ -10,14 +10,17 @@ public class PlayerHealth : MonoBehaviour
 {
     // プレイヤーのhpと無敵時間
     [SerializeField, Header("プレイヤーのHP")] private int _hp = 3;
-    [SerializeField, Header("プレイヤーの無敵時間")] private int _waitTime = 3;
+    [SerializeField, Header("プレイヤーの無敵時間")] private float _waitTime = 1f; 
 
     // プレイヤーのスタミナとフレーム当たりの増加量
     [SerializeField, Header("プレイヤーのMAXスタミナ")] public float maxStamina = 100f;
     [SerializeField, Header("スタミナの増加率")] private float _increaseStamina = 0.05f;
     private float _stamina;
 
-    //音声
+    // 無敵状態のフラグ
+    public bool isInvincible = false;
+
+    // 音声
     [SerializeField, Header("攻撃受けた音")] private AudioClip _damageSE;
 
     public void Start()
@@ -27,23 +30,34 @@ public class PlayerHealth : MonoBehaviour
 
     /// <summary>
     /// 敵から受けるダメージをここで処理
-    /// 食らった後無敵時間
+    /// 無敵時間中はダメージを受けない
     /// </summary>
     /// <param name="power">敵キャラのパワー</param>
     public async void TakeDamage(int power)
     {
-        SoundManager.Instance.PlaySE(_damageSE);
+        // 無敵状態であればダメージを受けない
+        if (isInvincible) return;
+
+        SoundManager.Instance.PlaySE2(_damageSE);
         _hp -= power;
+        Debug.Log(_hp);
+
         if (_hp <= 0)
         {
             Die();
         }
-        await UniTask.Delay(TimeSpan.FromSeconds(_waitTime));
+        else
+        {
+            isInvincible = true;
+            await UniTask.Delay(TimeSpan.FromSeconds(_waitTime));
+            isInvincible = false;
+        }
     }
 
     private void Die()
     {
-        //死亡処理
+        // 死亡処理
+        Debug.Log("Player has died.");
     }
 
     public int GetHP()
