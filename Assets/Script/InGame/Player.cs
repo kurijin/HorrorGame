@@ -1,34 +1,34 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
-/// <summary>
-/// Playerの動きをするもの,InputActionで処理
-/// 移動は前と後ろ,カメラで当たりを見渡す。
-/// 歩く時に音をつける。
-/// </summary>
 public class Player : MonoBehaviour
 {
     // キャラクターの移動に関するもの
     private CharacterController _characterController;
     private Vector2 _moveInput;
     private Vector3 _moveDirection;
-    private float _moveSpeed; //現在の移動速度
+    private float _moveSpeed;
     private bool isRunnig = false;
 
     [SerializeField, Header("スタミナ減少率")] private float _consumeStamina = 0.1f;
     [SerializeField, Header("プレイヤーの歩行速度")] private float _walkSpeed = 3f;
     [SerializeField, Header("プレイヤーの走る速度")] private float _runSpeed = 5f;
     [SerializeField, Header("無敵時間中の速度")] private float _speedInvincible = 6f;
-
+    
     // 重力に関するパラメータ
-    private Vector3 _velocity; 
+    private Vector3 _velocity;
     [SerializeField, Header("重力の強さ")] private float gravity = -9.81f;
     
-    // カメラに関するパラメータ
-    private Vector2 _lookInput;
+    // カメラとレイキャスト関連
     [SerializeField, Header("顔の前についているカメラ")] private Camera _camera;
+    private Vector2 _lookInput;
     [SerializeField, Header("感度")] private float _lookSensitivity = 0.5f;
     [SerializeField, Header("上下で見れる角度")] private float _maxLookAngle = 60f;
+    [SerializeField, Header("レイキャストの射程距離")] private float raycastDistance = 5f; 
+    [SerializeField, Header("PlayerUIの中心のイメージ")] private Image _centerImage; 
+    [SerializeField, Header("アイテムがない時の中心点")] private Sprite _normalCenter; 
+    [SerializeField, Header("アイテムがある時の中心点")] private Sprite _itemCenter; 
     private float _verticalRotation = 0f;
 
     // アニメーション
@@ -37,10 +37,7 @@ public class Player : MonoBehaviour
     // 音声に関するもの
     [SerializeField, Header("歩行音")] private AudioClip _walkSound;
     [SerializeField, Header("走る音")] private AudioClip _runSound;
-
-    /// <summary>
-    /// walkのサウンド、runのサウンドどちらが流れているかを監視
-    /// </summary>
+    
     private bool isPlayingWalkSound = false;
     private bool isPlayingRunSound = false;
     private PlayerHealth _playerHealth;
@@ -50,6 +47,7 @@ public class Player : MonoBehaviour
         _characterController = GetComponent<CharacterController>();
         _animator = GetComponent<Animator>();
         _playerHealth = GetComponent<PlayerHealth>();
+        _centerImage.sprite = _normalCenter;
     }
 
     void Update()
@@ -59,7 +57,7 @@ public class Player : MonoBehaviour
             _moveSpeed = _runSpeed;
             _playerHealth.ConsumeStamina(_consumeStamina);
         }
-        else if(_playerHealth.isInvincible)
+        else if (_playerHealth.isInvincible)
         {
             _moveSpeed = _speedInvincible;
         }
@@ -73,7 +71,6 @@ public class Player : MonoBehaviour
 
         if (_moveDirection.magnitude > 0.1f)
         {
-            /// 後ろに下がる時はその方向を見たまま下がる。
             if (_moveInput.y < 0)
             {
                 transform.forward = -_moveDirection;
@@ -99,12 +96,31 @@ public class Player : MonoBehaviour
         }
 
         _velocity.y += gravity * Time.deltaTime;
-        _characterController.Move((_moveDirection * _moveSpeed + _velocity) * Time.deltaTime);  
+        _characterController.Move((_moveDirection * _moveSpeed + _velocity) * Time.deltaTime);
+
+        _centerImage.sprite = _normalCenter;
+        ItemRay();
+
     }
 
+    private void ItemRay()
+    {
+        RaycastHit hit;
+
+        if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out hit, raycastDistance))
+        {
+            if (hit.collider.CompareTag("Item") && hit.collider.CompareTag("Door") && hit.collider.CompareTag("LockDoor"))
+            {
+                _centerImage.sprite = _itemCenter;
+            }
+        } 
+    }
+    
+    /// <summary>
+    /// 歩く,走る,見渡す,拾うのインプットアクションの処理
+    /// </summary>
     public void OnMove(InputAction.CallbackContext context)
     {
-        // InputActionからMoveを受け取る
         _moveInput = context.ReadValue<Vector2>();
     }
 
@@ -124,22 +140,53 @@ public class Player : MonoBehaviour
 
     public void OnLook(InputAction.CallbackContext context)
     {
-        // InputActionからLookを受け取る
         _lookInput = context.ReadValue<Vector2>();
 
-        // 左右の回転
         float horizontalRotation = _lookInput.x * _lookSensitivity;
         transform.Rotate(0, horizontalRotation, 0);
 
-        // 上下の回転
         _verticalRotation -= _lookInput.y * _lookSensitivity;
         _verticalRotation = Mathf.Clamp(_verticalRotation, -_maxLookAngle, _maxLookAngle);
 
         _camera.transform.localRotation = Quaternion.Euler(_verticalRotation, 0, 0);
     }
 
+    public void OnPickUp(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            RaycastHit hit;
+
+            if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out hit, raycastDistance))
+            {
+                if (hit.collider.CompareTag("Item"))
+                {
+                    Item item = hit.collider.GetComponent<Item>();
+                    if (item != null)
+                    {
+                        item.OnItemPickedUp();  
+                    }
+                }
+                else if(hit.collider.CompareTag("Door"))
+                {
+                    Animator _doorAnimator = hit.collider.GetComponent<Animator>();
+                    _doorAnimator.SetBool("IsOpen",true);
+                }
+                else if(hit.collider.CompareTag("LockDoor"))
+                {
+                    Lock _lock = hit.collider.GetComponent<Lock>();
+                    _lock.LockDoor();
+                }
+            } 
+        }
+    }
+
+
+
+
+
     /// <summary>
-    /// 歩行音アニメーションイベントで呼ぶもの
+    /// アニメーションイベントで歩行音を鳴らすためのメソッド
     /// </summary>
     public void WalkSound()
     {

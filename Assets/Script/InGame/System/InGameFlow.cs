@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
+using UnityEngine.UI;
 using Cysharp.Threading.Tasks;
 using System;
 
@@ -17,6 +18,9 @@ public class InGameFlow : MonoBehaviour
     [SerializeField,Header("PlayerUI")] private GameObject _playerUI;
     [SerializeField,Header("スタートUI")] private GameObject _startUI;
     [SerializeField,Header("遊び方UI")] private GameObject _howToPlayUI;
+
+    [SerializeField,Header("メッセージUI")] private GameObject _messageUI;
+    [SerializeField,Header("写すメッセージ")] private Text _showMessage;
     [SerializeField,Header("ポーズ画面UI")] private GameObject _pauseUI;
     [SerializeField,Header("ゲームオーバーUI")] private GameObject _gameOverUI;
     [SerializeField,Header("ゲームクリアUI")] private GameObject _gameClearUI;
@@ -41,7 +45,6 @@ public class InGameFlow : MonoBehaviour
     private bool _isPausing = false;
 
     [SerializeField,Header("通常BGM")] private AudioClip _normalBGM;
-
     private void Awake()
     {      
         if (Instance == null)
@@ -114,9 +117,19 @@ public class InGameFlow : MonoBehaviour
         _enemyManager.SetActive(true);
     }
 
+    public async UniTask ShowMessage(string message)
+    {
+        Time.timeScale = 0f;
+        _messageUI.SetActive(true);
+        _showMessage.text = message;
+        await WaitForInput();
+        _messageUI.SetActive(false);
+        Time.timeScale = 1f;
+    }
+
     public void GameOver()
     {
-        Debug.Log("a");
+        Debug.Log("Death");
     }
 
     public void Retry()

@@ -33,7 +33,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "PickUp & OK",
+                    "name": "PickUp ",
                     "type": "Button",
                     "id": "243bcb35-e9fa-4c86-bedb-89059cf9b735",
                     "expectedControlType": "Button",
@@ -193,7 +193,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "PickUp & OK",
+                    "action": "PickUp ",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -203,8 +203,8 @@
                     "path": "<Keyboard>/enter",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "PickUp & OK",
+                    "groups": "Keyboard&Mouse",
+                    "action": "PickUp ",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -215,7 +215,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "PickUp & OK",
+                    "action": "PickUp ",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
