@@ -385,6 +385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31be8c71827994421a8fdb09a5be35ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 0}
   _speed: 3
   _vanishTime: 100
   _stopDuration: 2

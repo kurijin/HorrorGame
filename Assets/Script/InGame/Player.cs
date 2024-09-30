@@ -109,7 +109,7 @@ public class Player : MonoBehaviour
 
         if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out hit, raycastDistance))
         {
-            if (hit.collider.CompareTag("Item") || hit.collider.CompareTag("Door") || hit.collider.CompareTag("LockDoor"))
+            if (hit.collider.CompareTag("Item") || hit.collider.CompareTag("Door") || hit.collider.CompareTag("Lock"))
             {
                 _centerImage.sprite = _itemCenter;
             }

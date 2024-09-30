@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 using Cysharp.Threading.Tasks;
 using System;
@@ -26,18 +26,18 @@ public class Enemy : MonoBehaviour
     {
         SoundManager.Instance.StopBGM();
         SoundManager.Instance.PlayBGM(_bgm);
-        _player = GameObject.FindWithTag("Player");
+        _player = EnemyManager.Instance.GetPlayer();
         _playerHealth = _player.GetComponent<PlayerHealth>();
         _myAgent = GetComponent<NavMeshAgent>();
         _myAgent.speed = _speed;
-        //_animator = GetComponent<Animator>();
+        _animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
         if (!_isAttacking)
         {
-            //_animator.SetFloat("Speed",_spped);
+            _animator.SetFloat("Speed",_speed);
             _myAgent.SetDestination(_player.transform.position);
         }
 
@@ -71,7 +71,7 @@ public class Enemy : MonoBehaviour
         _myAgent.isStopped = true;
         _isAttacking = true;
 
-        //_animator.SetTrigger("Attack");
+        _animator.SetTrigger("Attack");
 
         _playerHealth.TakeDamage(1);
         await UniTask.Delay(TimeSpan.FromSeconds(_stopDuration));

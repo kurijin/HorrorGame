@@ -651,7 +651,7 @@ GameObject:
   - component: {fileID: 1740355750230732958}
   m_Layer: 0
   m_Name: SM_Jason
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -815,10 +815,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.3613291
+  m_Radius: 0.52983093
   m_Height: 1.9185959
   m_Direction: 1
-  m_Center: {x: 0, y: 0.8722989, z: 0.13867089}
+  m_Center: {x: 0, y: 0.8722989, z: -0.029830933}
 --- !u!95 &7125991856498181960
 Animator:
   serializedVersion: 5
@@ -862,7 +862,7 @@ CharacterController:
   m_Height: 1.7
   m_Radius: 0.57
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_StepOffset: 0.25
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
@@ -878,12 +878,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b69bb3e4462ea4f3896f141f06e98da9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _consumeStamina: 0.1
-  _walkSpeed: 1
+  _consumeStamina: 0.15
+  _walkSpeed: 2
   _runSpeed: 4
+  _speedInvincible: 6
+  gravity: -9.81
   _camera: {fileID: 768386147082671761}
   _lookSensitivity: 0.1
   _maxLookAngle: 60
+  raycastDistance: 5
+  _centerImage: {fileID: 0}
+  _normalCenter: {fileID: 21300000, guid: c99707f70ea4242728260a1668e5ad39, type: 3}
+  _itemCenter: {fileID: 21300000, guid: e74417346068c4fac99d7eeafd6c66c6, type: 3}
   _walkSound: {fileID: 8300000, guid: c82143dce6ad04d7f9d39746eb1934dc, type: 3}
   _runSound: {fileID: 8300000, guid: e28cbfcc1e9c64f16824c8ea4b2766f6, type: 3}
 --- !u!114 &1740355750230732958
@@ -902,6 +908,7 @@ MonoBehaviour:
   _waitTime: 3
   maxStamina: 100
   _increaseStamina: 0.05
+  isInvincible: 0
   _damageSE: {fileID: 8300000, guid: 318bfbac35dc5431985d5ed1742aee0b, type: 3}
 --- !u!1 &2521643647800414624
 GameObject:
@@ -1344,7 +1351,7 @@ Transform:
   m_GameObject: {fileID: 3521945663863373208}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.715, z: 0.086}
+  m_LocalPosition: {x: 0, y: 1.77, z: 0.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1386,7 +1393,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295

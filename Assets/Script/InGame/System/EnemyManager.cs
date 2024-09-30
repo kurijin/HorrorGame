@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
@@ -11,6 +11,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField, Header("敵A")] private GameObject[] _easyEnemy;
     [SerializeField, Header("敵B")] private GameObject[] _normalEnemy;
     [SerializeField, Header("敵C")] private GameObject[] _hardEnemy;
+    [SerializeField, Header("プレイヤー")] private GameObject _player;
 
     private int _currentLevel;
     private float _elapsedTime;
@@ -31,12 +32,17 @@ public class EnemyManager : MonoBehaviour
         _currentLevel = DifficultyManager.Instance.Level;
     }
 
+    public GameObject GetPlayer()
+    {
+        return _player;
+    }
+
     //時間経過やアクションにより難易度を変更さしたい場合に使用
-  ///  private void Update()
-  ///  {
-  ///     _currentLevel = DifficultyManager.Instance.Level;
-  ///     _elapsedTime += Time.deltaTime;
-  ///  }
+    ///  private void Update()
+    ///  {
+    ///     _currentLevel = DifficultyManager.Instance.Level;
+    ///     _elapsedTime += Time.deltaTime;
+    ///  }
 
     /// <summary>
     /// プレイヤーがトリガーポイントに到達したらそこからこのスクリプトが呼ばれる。
