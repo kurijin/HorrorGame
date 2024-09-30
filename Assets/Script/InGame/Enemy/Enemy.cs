@@ -12,7 +12,8 @@ public class Enemy : MonoBehaviour
     private PlayerHealth _playerHealth;
     [SerializeField, Header("敵の移動速度")] private float _speed = 3f;
     [SerializeField, Header("敵の消える時間")] private float _vanishTime;
-    [SerializeField, Header("攻撃後の停止時間（秒）")] private float _stopDuration = 2f;  // 攻撃後の停止時間
+    [SerializeField, Header("攻撃後の停止時間（秒）")] private float _stopDuration = 2f;  
+    [SerializeField, Header("通常BGM")] private AudioClip _normalBGM;
     [SerializeField, Header("敵のBGM")] private AudioClip _bgm;
     [SerializeField, Header("敵のSE")] private AudioClip _se;
 
@@ -23,6 +24,8 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        SoundManager.Instance.StopBGM();
+        SoundManager.Instance.PlayBGM(_bgm);
         _player = GameObject.FindWithTag("Player");
         _playerHealth = _player.GetComponent<PlayerHealth>();
         _myAgent = GetComponent<NavMeshAgent>();
@@ -34,6 +37,7 @@ public class Enemy : MonoBehaviour
     {
         if (!_isAttacking)
         {
+            //_animator.SetFloat("Speed",_spped);
             _myAgent.SetDestination(_player.transform.position);
         }
 
@@ -48,6 +52,8 @@ public class Enemy : MonoBehaviour
 
     private void Vanish()
     {
+        SoundManager.Instance.StopBGM();
+        SoundManager.Instance.PlayBGM(_normalBGM);
         Destroy(gameObject);
     }
 
@@ -61,6 +67,7 @@ public class Enemy : MonoBehaviour
 
     public virtual async UniTask Attack()
     {
+        SoundManager.Instance.PlaySE3(_se);
         _myAgent.isStopped = true;
         _isAttacking = true;
 

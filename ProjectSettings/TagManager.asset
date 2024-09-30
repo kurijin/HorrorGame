@@ -8,6 +8,7 @@ TagManager:
   - Item
   - Door
   - LockDoor
+  - Lock
   layers:
   - Default
   - TransparentFX
