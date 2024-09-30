@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
+using UnityEngine.UI;
 using Cysharp.Threading.Tasks;
 using System;
 
@@ -17,6 +18,12 @@ public class InGameFlow : MonoBehaviour
     [SerializeField,Header("PlayerUI")] private GameObject _playerUI;
     [SerializeField,Header("スタートUI")] private GameObject _startUI;
     [SerializeField,Header("遊び方UI")] private GameObject _howToPlayUI;
+    [SerializeField,Header("アイテムゲットUI")] private GameObject _itemGetUI;
+    [SerializeField,Header("アイテム画像")] private Image _itemImage;
+    [SerializeField,Header("アイテム名")] private Text _itemName;
+    [SerializeField,Header("アイテムメッセージ")] private Text _itemMessage;
+    [SerializeField,Header("メッセージUI")] private GameObject _messageUI;
+    [SerializeField,Header("写すメッセージ")] private Text _showMessage;
     [SerializeField,Header("ポーズ画面UI")] private GameObject _pauseUI;
     [SerializeField,Header("ゲームオーバーUI")] private GameObject _gameOverUI;
     [SerializeField,Header("ゲームクリアUI")] private GameObject _gameClearUI;
@@ -39,8 +46,8 @@ public class InGameFlow : MonoBehaviour
 
     //ポーズ中かどうかを確認する
     private bool _isPausing = false;
-
     [SerializeField,Header("通常BGM")] private AudioClip _normalBGM;
+
 
     private void Awake()
     {      
@@ -87,9 +94,9 @@ public class InGameFlow : MonoBehaviour
             _isStart = false;
             HowtoUI().Forget();
         }
-
         if (Input.GetKey(KeyCode.Space))
         {
+            CheckPointManager.Instance.Check = 1;
             Retry();
         }
     }
@@ -98,6 +105,7 @@ public class InGameFlow : MonoBehaviour
     {
         //遊び方のUI表示
         _howToPlayUI.SetActive(true);
+        _isOK = false;
         await WaitForInput();
         _howToPlayUI.SetActive(false);
         CheckPointManager.Instance.Check = 1;
@@ -111,15 +119,41 @@ public class InGameFlow : MonoBehaviour
         _playerUI.SetActive(true);
         _playerInputSystem.enabled = true;
         _enemyManager.SetActive(true);
+        ItemManager.Instance.LoadItemList();
+    }
+
+    public async UniTask ShowMessage(string message)
+    {
+        _isOK = false;
+        Time.timeScale = 0f;
+        _messageUI.SetActive(true);
+        _showMessage.text = message;
+        await WaitForInput();
+        _messageUI.SetActive(false);
+        Time.timeScale = 1f;
+    }
+    public async UniTask ItemGet(string ItemName,Sprite ItemImage,string message)
+    {
+        _isOK = false;
+        Time.timeScale = 0f;
+        _itemMessage.text = message;
+        _itemImage.sprite = ItemImage;
+        _itemGetUI.SetActive(true);
+        await WaitForInput();
+        _itemGetUI.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     public void GameOver()
     {
-        Debug.Log("a");
+        Debug.Log("Death");
     }
 
     public void Retry()
     {
+        ItemManager.Instance.ClearItemList();  
+        _pauseAction.performed -= OnPause;
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -138,24 +172,35 @@ public class InGameFlow : MonoBehaviour
         {
             await UniTask.Yield(PlayerLoopTiming.Update);  
         }
-        _isOK = false; 
     }
 
     public void OnSubmit(InputAction.CallbackContext context)
     {
-        if (!_isOK)  
+        if (!_isOK && context.phase == InputActionPhase.Performed)  
         {
-            _isOK = true; 
+            _isOK = true;
         }
     }
 
     /// <summary>
     /// escキーを押すたびにポーズかどうかを切り替える
+    /// プレイヤーと敵の動きを止める
+    ///  処理が重くならないように,敵はEnemyManagerを確認してもし敵が出現しているならFindをする
     /// </summary>
     public void OnPause(InputAction.CallbackContext context)
     {
         _isPausing = !_isPausing;
+        if(_isPausing)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
+
         _playerInputSystem.enabled = !_isPausing;
         _pauseUI.SetActive(_isPausing);
+        _playerUI.SetActive(!_isPausing);
     }
 }

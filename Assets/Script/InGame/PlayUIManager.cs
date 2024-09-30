@@ -43,14 +43,15 @@ public class PlayerUIManager : MonoBehaviour
     {
         for (int i = 0; i < _hpArrow.Length; i++)
         {
-            if (i < maxHp - currentHp)
+            if (i < currentHp)
             {
-                _hpArrow[i].sprite = _fullhpImage;
+                _hpArrow[i].sprite = _fullhpImage;  // HPが残っている場合
             }
             else
             {
-                _hpArrow[i].sprite = _lesshpImage;
+                _hpArrow[i].sprite = _lesshpImage;  // HPが減っている場合
             }
         }
     }
+
 }

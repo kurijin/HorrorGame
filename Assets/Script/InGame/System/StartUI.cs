@@ -33,7 +33,6 @@ public class StartUI : MonoBehaviour
 
         for (int i = 1; i < _message.Length; i++)
         {
-            SoundManager.Instance.PlaySE(_textSE);
             await ShowMessagePanel(_message[i], messageDisplayTime);
         }
 
@@ -49,7 +48,7 @@ public class StartUI : MonoBehaviour
     private async UniTask ShowMessagePanel(string message, float waitTime)
     {
         _panel.SetActive(true);
-        SoundManager.Instance.PlaySE2(_textSE);
+        SoundManager.Instance.PlaySE3(_textSE);
         _text.text = message;
         await UniTask.Delay(TimeSpan.FromSeconds(waitTime));
         _panel.SetActive(false);
@@ -64,7 +63,7 @@ public class StartUI : MonoBehaviour
         _player.transform.Rotate(0f, 180f, 0f);
         _playerCamera.transform.Rotate(25f, 0f, 0f);
         _animator.SetTrigger("Knock");
-        SoundManager.Instance.PlaySE2(_animationSE);
+        SoundManager.Instance.PlaySE3(_animationSE);
         await UniTask.Delay(TimeSpan.FromSeconds(animationWaitTime)); 
     }
 
