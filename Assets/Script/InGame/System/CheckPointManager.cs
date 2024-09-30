@@ -17,7 +17,11 @@ public class CheckPointManager : MonoBehaviour
     public int Check
     {
         get { return checkPoint; }
-        set { checkPoint = value; }
+        set
+        {
+            checkPoint = value;
+            ItemManager.Instance.SaveItemList();
+        }
     }
 
     private void Awake()
@@ -25,7 +29,7 @@ public class CheckPointManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(this.gameObject); 
+            DontDestroyOnLoad(this.gameObject);
         }
         else
         {

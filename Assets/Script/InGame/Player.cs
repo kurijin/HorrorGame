@@ -109,7 +109,7 @@ public class Player : MonoBehaviour
 
         if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out hit, raycastDistance))
         {
-            if (hit.collider.CompareTag("Item") && hit.collider.CompareTag("Door") && hit.collider.CompareTag("LockDoor"))
+            if (hit.collider.CompareTag("Item") || hit.collider.CompareTag("Door") || hit.collider.CompareTag("LockDoor"))
             {
                 _centerImage.sprite = _itemCenter;
             }
@@ -172,10 +172,10 @@ public class Player : MonoBehaviour
                     Animator _doorAnimator = hit.collider.GetComponent<Animator>();
                     _doorAnimator.SetBool("IsOpen",true);
                 }
-                else if(hit.collider.CompareTag("LockDoor"))
+                else if(hit.collider.CompareTag("Lock"))
                 {
                     Lock _lock = hit.collider.GetComponent<Lock>();
-                    _lock.LockDoor();
+                    _lock.ClearLock();
                 }
             } 
         }
