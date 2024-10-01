@@ -56,8 +56,8 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die()
     {
-        // 死亡処理
-        Debug.Log("Player has died.");
+        //await 死んだ時のアニメーション
+        InGameFlow.Instance.GameOver();
     }
 
     public int GetHP()

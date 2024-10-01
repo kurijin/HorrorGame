@@ -26,13 +26,12 @@ public class InGameFlow : MonoBehaviour
     [SerializeField,Header("写すメッセージ")] private Text _showMessage;
     [SerializeField,Header("ポーズ画面UI")] private GameObject _pauseUI;
     [SerializeField,Header("ゲームオーバーUI")] private GameObject _gameOverUI;
-    [SerializeField,Header("ゲームクリアUI")] private GameObject _gameClearUI;
 
     //UI時に使用するシステムの参照
     [SerializeField,Header("プレイヤーのインプットアクション")] private PlayerInput _playerInputSystem;
     [SerializeField,Header("敵管理のゲームオブジェクト")] private GameObject _enemyManager;
 
-    //　プレイヤーの動きを制御するもの
+    //ポーズメニューのインプットシステム取得
     private PlayerInput _inputActions;
 
     //ポーズ画面を開くアクションの追加のもの
@@ -146,7 +145,8 @@ public class InGameFlow : MonoBehaviour
 
     public void GameOver()
     {
-        Debug.Log("Death");
+        Time.timeScale = 0f;
+        _gameOverUI.SetActive(true);
     }
 
     public void Retry()
@@ -159,7 +159,10 @@ public class InGameFlow : MonoBehaviour
 
     public void End()
     {
-        Debug.Log("a");
+        CheckPointManager.Instance.Check = 0;
+        ItemManager.Instance.ClearItemList();  
+        Destroy(ItemManager.Instance.gameObject);
+        SceneManager.LoadScene("Title");
     }
 
 
@@ -202,5 +205,11 @@ public class InGameFlow : MonoBehaviour
         _playerInputSystem.enabled = !_isPausing;
         _pauseUI.SetActive(_isPausing);
         _playerUI.SetActive(!_isPausing);
+    }
+
+    //ゲームクリアフラグを取った時のみ呼び出す
+    public void PauseOUT()
+    {
+        _pauseAction.performed -= OnPause;
     }
 }

@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5456026910258212384
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8925940079238719171}
+  - component: {fileID: 3111756203088416300}
+  - component: {fileID: 2959809336435225911}
+  m_Layer: 0
+  m_Name: GameClear
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8925940079238719171
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5456026910258212384}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 137.41, y: 68.62, z: 290.3}
+  m_LocalScale: {x: 1, y: 2, z: 10}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3111756203088416300
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5456026910258212384}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.4326935, y: 1, z: 0.463974}
+  m_Center: {x: 1.2163467, y: 0, z: 0.268013}
+--- !u!114 &2959809336435225911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5456026910258212384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50a72920a61b64f7986d4e3734a03623, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 0}
+  _playerCamera: {fileID: 0}
+  _walkSE: {fileID: 8300000, guid: c82143dce6ad04d7f9d39746eb1934dc, type: 3}
+  _bgm: {fileID: 8300000, guid: 60dcd2575f1d24c3e96cac8e40067108, type: 3}
+  _forwardDuration: 4
+  _rotationDuration: 2
+  _forwardSpeed: 3
+  _enemy: {fileID: 0}
+  _enemySE: {fileID: 8300000, guid: 8bac345c26426448fb8ed4e4b2df92a7, type: 3}
+  _gameClearUI: {fileID: 0}
+  _playerUI: {fileID: 0}
+  _dialogue:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _revealSpeed: 0.1
+  _dialogueSE: {fileID: 8300000, guid: 60e2934181d564524b2da4201bb0ddea, type: 3}
