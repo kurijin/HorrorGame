@@ -50,7 +50,7 @@ public class PauseManager : MonoBehaviour
 
     private void Finish()
     {
-        SoundManager.Instance.PlaySE(_okSE);
+        SoundManager.Instance.PlaySE3(_okSE);
         InGameFlow.Instance.End();
     }
 }

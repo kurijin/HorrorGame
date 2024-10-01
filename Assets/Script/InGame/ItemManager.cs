@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq; 
 
 /// <summary>
 /// アイテムの所持状況を考えるもの
@@ -79,4 +80,32 @@ public class ItemManager : MonoBehaviour
     {
         itemList.Clear();
     }
+
+    /// <summary>
+    /// クリア時のみ呼び出す.
+    /// コレクションアイテムであるダックシリーズだけフィルタリング取得
+    /// </summary>
+
+    public void SaveCollectDuckItems()
+    {
+        List<string> filteredItems = itemList.FindAll(item => item.Contains("ダック"));
+        string existingItems = PlayerPrefs.GetString("CollectList", "");
+        List<string> collectList = new List<string>();
+        if (!string.IsNullOrEmpty(existingItems))
+        {
+            collectList.AddRange(existingItems.Split(','));
+        }
+        foreach (string item in filteredItems)
+        {
+            if (!collectList.Contains(item))
+            {
+                collectList.Add(item);
+            }
+        }
+        // リストを文字列に戻して保存
+        string items = string.Join(",", collectList);
+        PlayerPrefs.SetString("CollectList", items);
+        PlayerPrefs.Save();
+    }
+
 }
