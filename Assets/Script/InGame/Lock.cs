@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
@@ -24,6 +24,7 @@ public class Lock : MonoBehaviour
         {
             SoundManager.Instance.PlaySE3(_unlockSE);
             InGameFlow.Instance.ShowMessage(_unlockMessage).Forget();
+            Destroy(this.gameObject);
         }
         else
         {

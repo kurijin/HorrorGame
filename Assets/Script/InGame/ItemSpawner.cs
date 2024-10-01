@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -30,8 +30,8 @@ public class ItemSpawnManager : MonoBehaviour
         Transform selectedPoint2 = GetRandomSpawnPoint(availablePoints);
 
         // 選ばれた地点に選ばれた選ばれたアイテムを出現させる
-        Instantiate(selectedItem1, selectedPoint1.position, Quaternion.identity);
-        Instantiate(selectedItem2, selectedPoint2.position, Quaternion.identity);
+        Instantiate(selectedItem1, selectedPoint1.position, Quaternion.Euler(-90f, 0f, 0f));
+        Instantiate(selectedItem2, selectedPoint2.position, Quaternion.Euler(-90f, 0f, 0f));
     }
 
     private GameObject GetRandomItem(List<GameObject> availableItems)

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
@@ -130,6 +130,7 @@ public class InGameFlow : MonoBehaviour
         await WaitForInput();
         _messageUI.SetActive(false);
         Time.timeScale = 1f;
+        SoundManager.Instance.StopSE3();
     }
     public async UniTask ItemGet(string ItemName,Sprite ItemImage,string message)
     {

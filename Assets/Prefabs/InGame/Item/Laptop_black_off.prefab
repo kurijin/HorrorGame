@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4409111145770832221}
   - component: {fileID: 4098564962754666806}
   - component: {fileID: 7650627482014462217}
+  - component: {fileID: -2748404996477812649}
   m_Layer: 0
   m_Name: Laptop_black_off
   m_TagString: Lock
@@ -101,3 +102,24 @@ MonoBehaviour:
   _unlockMessage: "PC\u304C\u8D77\u52D5\u3057\u305F"
   _lockSE: {fileID: 8300000, guid: eae543b28f3ba4b17875338110acbaab, type: 3}
   _lockMessage: "\u30D0\u30C3\u30C6\u30EA\u30FC\u304C\u306A\u3044\u3088\u3046\u3060"
+--- !u!65 &-2748404996477812649
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8061190541838703797}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.2294922, y: 0.9237671, z: 1.1701355}
+  m_Center: {x: 0.56355286, y: -0.030776978, z: -0.058303833}
