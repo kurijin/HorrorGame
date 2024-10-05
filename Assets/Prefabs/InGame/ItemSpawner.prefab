@@ -44,5 +44,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 146395f0f3cda40168ef3ae5e97dcb99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemPrefabs: []
-  spawnPoints: []
+  itemPrefabs:
+  - {fileID: 1655533205540271402, guid: b7c1e1749473b44e09684e686aed5843, type: 3}
+  - {fileID: 3427036333107996066, guid: 1874389bffde84f8b85cdfa7af8d6166, type: 3}
+  - {fileID: 5544216248797391891, guid: b7114c655205c453b8e085a7cf41b527, type: 3}
+  - {fileID: 7936728834760704689, guid: 7da995456100046bdaf29380b0c04adb, type: 3}
+  - {fileID: 1826281856044778486, guid: f78b42969730746fd9ca79e461dcc415, type: 3}
+  - {fileID: 6802150932923020943, guid: 98591622763f2499d950785e927a0fe5, type: 3}
+  - {fileID: 4256397502564096210, guid: d6f0494074f7a4a29bdbd065e6064f2f, type: 3}
+  - {fileID: 6684205471816376370, guid: 9e8302ca696004acfbeb28ee206eb58d, type: 3}
+  spawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

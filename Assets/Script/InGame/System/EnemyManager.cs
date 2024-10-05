@@ -5,6 +5,8 @@ using System.Linq;
 
 /// <summary>
 /// 敵の出現を管理するマネージャー
+/// 敵の出現トリガーをONにするのは色々なスクリプトから呼ぶ(→フラグが立たないとトリガーは出現しない.)
+/// 
 /// </summary>
 public class EnemyManager : MonoBehaviour
 {
@@ -12,6 +14,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField, Header("敵B")] private GameObject[] _normalEnemy;
     [SerializeField, Header("敵C")] private GameObject[] _hardEnemy;
     [SerializeField, Header("プレイヤー")] private GameObject _player;
+    [SerializeField, Header("敵の出現トリガー")] private GameObject[] _enemyTrigger;
 
     private int _currentLevel;
     private float _elapsedTime;
@@ -30,11 +33,20 @@ public class EnemyManager : MonoBehaviour
     {
         // 難易度を取得
         _currentLevel = DifficultyManager.Instance.Level;
+        for (int i = 0 ; i < _enemyTrigger.Length ; i++)
+        {
+            _enemyTrigger[i].SetActive(false);
+        }
     }
 
     public GameObject GetPlayer()
     {
         return _player;
+    }
+
+    public void ActiveTrigger(int spotnumber)
+    {
+        _enemyTrigger[spotnumber].SetActive(true);
     }
 
     //時間経過やアクションにより難易度を変更さしたい場合に使用
@@ -43,6 +55,9 @@ public class EnemyManager : MonoBehaviour
     ///     _currentLevel = DifficultyManager.Instance.Level;
     ///     _elapsedTime += Time.deltaTime;
     ///  }
+
+
+
 
     /// <summary>
     /// プレイヤーがトリガーポイントに到達したらそこからこのスクリプトが呼ばれる。

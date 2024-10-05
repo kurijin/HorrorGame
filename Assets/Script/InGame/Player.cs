@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using Cysharp.Threading.Tasks;
+using System;
 
 public class Player : MonoBehaviour
 {
@@ -9,9 +11,10 @@ public class Player : MonoBehaviour
     private Vector2 _moveInput;
     private Vector3 _moveDirection;
     private float _moveSpeed;
-    private bool isRunnig = false;
+    public bool isRunnig = false;
 
     [SerializeField, Header("スタミナ減少率")] private float _consumeStamina = 0.1f;
+    [SerializeField, Header("息切れ時停止時間")] private float _stopTime = 1.5f;
     [SerializeField, Header("プレイヤーの歩行速度")] private float _walkSpeed = 3f;
     [SerializeField, Header("プレイヤーの走る速度")] private float _runSpeed = 5f;
     [SerializeField, Header("無敵時間中の速度")] private float _speedInvincible = 6f;
@@ -37,10 +40,12 @@ public class Player : MonoBehaviour
     // 音声に関するもの
     [SerializeField, Header("歩行音")] private AudioClip _walkSound;
     [SerializeField, Header("走る音")] private AudioClip _runSound;
+    [SerializeField, Header("息切れ音")] private AudioClip _dushoutSound;
     
     private bool isPlayingWalkSound = false;
     private bool isPlayingRunSound = false;
     private PlayerHealth _playerHealth;
+    private bool _isStopped = false;
 
     void Start()
     {
@@ -49,10 +54,26 @@ public class Player : MonoBehaviour
         _playerHealth = GetComponent<PlayerHealth>();
         _centerImage.sprite = _normalCenter;
     }
-
-    void Update()
+    /// <summary>
+    /// 歩く状態,走る状態停止状態がある
+    /// スタミナ0まで走り切った場合,息切れで一時停止する.
+    /// </summary>
+    async void Update()
     {
-        if (isRunnig && _playerHealth.GetStamina() > 0)
+        if (_isStopped)
+        {
+            return;
+        }
+        else if (_playerHealth.GetStamina() <= 0)
+        {
+            _moveSpeed = 0f;
+            _isStopped = true;
+            SoundManager.Instance.PlaySE(_dushoutSound);
+            await UniTask.Delay(TimeSpan.FromSeconds(_stopTime));
+            SoundManager.Instance.StopSE();
+            _isStopped = false;
+        }
+        else if (isRunnig && _playerHealth.GetStamina() > 0)
         {
             _moveSpeed = _runSpeed;
             _playerHealth.ConsumeStamina(_consumeStamina);
@@ -162,9 +183,14 @@ public class Player : MonoBehaviour
                 if (hit.collider.CompareTag("Item"))
                 {
                     Item item = hit.collider.GetComponent<Item>();
+                    ReadBook book = hit.collider.GetComponent<ReadBook>();
                     if (item != null)
                     {
                         item.OnItemPickedUp();  
+                    }
+                    if (book != null)
+                    {
+                        book.OnBookRead().Forget();
                     }
                 }
                 else if(hit.collider.CompareTag("Door"))

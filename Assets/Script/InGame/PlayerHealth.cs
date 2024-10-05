@@ -10,6 +10,7 @@ public class PlayerHealth : MonoBehaviour
 {
     // プレイヤーのhpと無敵時間
     [SerializeField, Header("プレイヤーのHP")] private int _hp = 3;
+    private Player _player;
     [SerializeField, Header("プレイヤーの無敵時間")] private float _waitTime = 1f; 
 
     // プレイヤーのスタミナとフレーム当たりの増加量
@@ -25,6 +26,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void Start()
     {
+        _player = gameObject.GetComponent<Player>();
         _stamina = maxStamina;
     }
 
@@ -83,8 +85,11 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
-        // スタミナを増加させる
-        _stamina += _increaseStamina;
+        if(!_player.isRunnig)
+        {
+            // 走っていない状態ならスタミナ増加
+            _stamina += _increaseStamina;
+        }
         // スタミナが最大値を超えないようにする
         _stamina = Mathf.Clamp(_stamina, 0, maxStamina);
     }

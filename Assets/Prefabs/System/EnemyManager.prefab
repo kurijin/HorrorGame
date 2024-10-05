@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6433608102049825376
 Transform:
   m_ObjectHideFlags: 0
@@ -44,6 +44,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8ffd00e8b75e40ae90789e8289e6c7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _easyEnemy: []
-  _normalEnemy: []
-  _hardEnemy: []
+  _easyEnemy:
+  - {fileID: 9132703350814440212, guid: cd3357258e4e8459aac197168191d617, type: 3}
+  - {fileID: 4918941986449449976, guid: 5c312456894895545826a066da4dcd69, type: 3}
+  _normalEnemy:
+  - {fileID: 9077157512721643498, guid: 2c2481a2c5f2542719fb57e971593390, type: 3}
+  - {fileID: 857706688626567905, guid: acf3e2d4bfbcc4808acf004a5301d825, type: 3}
+  _hardEnemy:
+  - {fileID: 8150503083471933124, guid: 33c443331622a4166ab967c4bf5eeb38, type: 3}
+  - {fileID: 2804752469126744034, guid: 3034a31a03b2446e2a0ca803e1adfc12, type: 3}
+  _player: {fileID: 0}
+  _enemyTrigger:
+  - {fileID: 0}
