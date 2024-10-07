@@ -24,6 +24,10 @@ public class Lock : MonoBehaviour
     [SerializeField,Header("PC起動時メッセージ")] private string _pcMessage;
     [SerializeField,Header("PC起動後に有効になるロック")] private GameObject _keyLock;
 
+    //ロック用
+    [SerializeField,Header("キーロック解除時にdoorとなるものR--keylock用---")] private GameObject _doorR;
+    [SerializeField,Header("キーロック解除時にdoorとなるものL")] private GameObject _doorL;
+
     private Animator _doorAnima;
 
     void Start()
@@ -34,6 +38,7 @@ public class Lock : MonoBehaviour
 
     public void ClearLock()
     {
+        gameObject.tag = "Untagged";
         if(ItemManager.Instance.itemList.Contains(_needItem))
         {
             SoundManager.Instance.PlaySE3(_unlockSE);
@@ -44,10 +49,17 @@ public class Lock : MonoBehaviour
                 InGameFlow.Instance.ShowMessage(_pcMessage).Forget();
                 SoundManager.Instance.StopSE3();
                 _keyLock.tag = "Lock";
+                gameObject.tag = "Lock";
+            }
+            else if(gameObject.name == "KeyLock")
+            {
+                _doorR.tag = "Door";
+                _doorL.tag = "Door";
+                Destroy(this.gameObject);
             }
             else
             {
-                 Destroy(this.gameObject);
+                Destroy(this.gameObject);
             }
         }
         else

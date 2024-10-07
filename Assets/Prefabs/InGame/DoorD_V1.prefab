@@ -24,8 +24,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410150728240798056}
   serializedVersion: 2
-  m_LocalRotation: {x: 1.1137557e-13, y: 1, z: 0.00000003774895, w: 0.0000029504295}
-  m_LocalPosition: {x: -4.9025474, y: 3.8183646, z: -6.7579994}
+  m_LocalRotation: {x: 0, y: 1, z: -0, w: -0.0000001872535}
+  m_LocalPosition: {x: -4.902542, y: 3.818367, z: -6.7579956}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 3259871452880390578}
   - component: {fileID: 3963006709097748877}
   - component: {fileID: 2641086261751040521}
-  - component: {fileID: 687903628055397049}
+  - component: {fileID: 6006708463273777819}
   m_Layer: 0
   m_Name: DoorD_Frame
   m_TagString: Untagged
@@ -118,7 +118,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &687903628055397049
+--- !u!64 &6006708463273777819
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 3436592952155309091}
   m_Layer: 0
   m_Name: DoorD_Right
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -283,7 +283,7 @@ GameObject:
   - component: {fileID: 5508733489336725029}
   m_Layer: 0
   m_Name: DoorD_Left
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -385,7 +385,7 @@ Animator:
   m_GameObject: {fileID: 7018279771507981283}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6e4bf8a72e5aadd46963e6465e78db02, type: 2}
+  m_Controller: {fileID: 9100000, guid: f768673e4bc11bf438f5a5dcbfd76ec8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

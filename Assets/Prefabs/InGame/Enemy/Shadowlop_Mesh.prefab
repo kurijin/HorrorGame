@@ -2688,9 +2688,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31be8c71827994421a8fdb09a5be35ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _speed: 3
-  _vanishTime: 100
+  _vanishTime: 20
   _stopDuration: 2
   _normalBGM: {fileID: 8300000, guid: 576bcd33785684b8880003d386ed95ac, type: 3}
   _bgm: {fileID: 8300000, guid: 76b3b3e8b7ef444719adcfc589940ad2, type: 3}

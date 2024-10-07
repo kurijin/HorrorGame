@@ -5,6 +5,7 @@ using System;
 
 /// <summary>
 /// 敵キャラの基底クラス
+/// EnemyManagerから出た時敵IDも付与され、死んだ時それをEnemyManagerに返す.
 /// </summary>
 public class Enemy : MonoBehaviour
 {
@@ -20,8 +21,20 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent _myAgent;
     private Animator _animator;
     private float _elapsedTime;
-    private bool _isAttacking = false;  // 攻撃中かどうかを判定するフラグ
+    private bool _isAttacking = false; 
 
+    //この敵がどこのトリガースポットから出てきた敵かを管理するもの
+    public int ID { get; private set; }
+
+    public void SetID(int id)
+    {
+        ID = id;
+    }
+
+    /// <summary>
+    /// 出てきた時にBGMを上書きする。
+    /// またプレイヤーを取得する(PrefabであるためEnemyManagerを介して)
+    /// </summary>
     private void Start()
     {
         SoundManager.Instance.StopBGM();
@@ -33,6 +46,9 @@ public class Enemy : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
+    /// <summary>
+    /// NavMeshのAIで追いかける
+    /// </summary>
     private void Update()
     {
         if (!_isAttacking)
@@ -54,9 +70,13 @@ public class Enemy : MonoBehaviour
     {
         SoundManager.Instance.StopBGM();
         SoundManager.Instance.PlayBGM(_normalBGM);
+        EnemyManager.Instance.EnemyCheckpoint(ID);
         Destroy(gameObject);
     }
 
+    /// <summary>
+    /// プレイヤーに当たったら攻撃,攻撃後一時停止
+    /// </summary>
     private async void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))

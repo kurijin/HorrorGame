@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
     [SerializeField, Header("歩行音")] private AudioClip _walkSound;
     [SerializeField, Header("走る音")] private AudioClip _runSound;
     [SerializeField, Header("息切れ音")] private AudioClip _dushoutSound;
-    
+    [SerializeField, Header("ドアを開ける音")] private AudioClip _openDoor;
     private bool isPlayingWalkSound = false;
     private bool isPlayingRunSound = false;
     private PlayerHealth _playerHealth;
@@ -196,7 +196,9 @@ public class Player : MonoBehaviour
                 else if(hit.collider.CompareTag("Door"))
                 {
                     Animator _doorAnimator = hit.collider.GetComponent<Animator>();
-                    _doorAnimator.SetBool("IsOpen",true);
+                    _doorAnimator.SetTrigger("Open");
+                    SoundManager.Instance.PlaySE3(_openDoor);
+                    hit.collider.gameObject.tag = "Untagged";
                 }
                 else if(hit.collider.CompareTag("Lock"))
                 {

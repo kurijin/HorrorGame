@@ -45,6 +45,10 @@ public class InGameFlow : MonoBehaviour
 
     //ポーズ中かどうかを確認する
     private bool _isPausing = false;
+
+    //死亡時のPlayerのリスポーン地点
+    [SerializeField,Header("プレイヤー")] private GameObject _player;
+
     [SerializeField,Header("通常BGM")] private AudioClip _normalBGM;
 
 
@@ -65,21 +69,49 @@ public class InGameFlow : MonoBehaviour
         _pauseAction.Disable();
     }
 
+    public Vector3 PlayerPosition()
+    {
+        return _player.transform.position;
+    }
+
     //時間を空けてStartUIを表示
     private async void Start()
     {
         SoundManager.Instance.PlayBGM(_normalBGM);
         switch (CheckPointManager.Instance.Check)
         {
+            //初期
             case 0:
                 await UniTask.Delay(TimeSpan.FromSeconds(2));
                 _startUI.SetActive(true);
                 _isStart = true;  
                 break;
+            //チュートリアル~電池取得
             case 1:
+                _player.transform.position = CheckPointManager.Instance.currentPosition;
                 GameStart();
                 break;
-
+            //電池取得後~大部屋の鍵取得
+            case 2:
+                EnemyManager.Instance.DeleteTrigger(1);
+                _player.transform.position = CheckPointManager.Instance.currentPosition;
+                GameStart();
+                break;
+            //大部屋の鍵取得後~大部屋内
+            case 3:
+                EnemyManager.Instance.DeleteTrigger(1);
+                EnemyManager.Instance.DeleteTrigger(2);
+                _player.transform.position = CheckPointManager.Instance.currentPosition;
+                GameStart();
+                break;
+            //大部屋~
+            case 4:
+                EnemyManager.Instance.DeleteTrigger(1);
+                EnemyManager.Instance.DeleteTrigger(2);
+                EnemyManager.Instance.DeleteTrigger(3);
+                _player.transform.position = CheckPointManager.Instance.currentPosition;
+                GameStart();
+                break;
             default:
                 GameStart();
                 break;
@@ -163,6 +195,7 @@ public class InGameFlow : MonoBehaviour
         CheckPointManager.Instance.Check = 0;
         ItemManager.Instance.ClearItemList();  
         Destroy(ItemManager.Instance.gameObject);
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Title");
     }
 
