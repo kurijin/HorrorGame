@@ -831,10 +831,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.52983093
+  m_Radius: 0.41430664
   m_Height: 1.9185959
   m_Direction: 1
-  m_Center: {x: 0, y: 0.8722989, z: -0.029830933}
+  m_Center: {x: -0.010406494, y: 0.8722989, z: -0.029830933}
 --- !u!95 &7125991856498181960
 Animator:
   serializedVersion: 5
@@ -876,7 +876,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 1.7
-  m_Radius: 0.57
+  m_Radius: 0.4
   m_SlopeLimit: 45
   m_StepOffset: 0.25
   m_SkinWidth: 0.08
@@ -894,7 +894,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b69bb3e4462ea4f3896f141f06e98da9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRunnig: 0
   _consumeStamina: 0.15
+  _stopTime: 1.5
   _walkSpeed: 2
   _runSpeed: 4
   _speedInvincible: 6
@@ -909,6 +911,7 @@ MonoBehaviour:
   _walkSound: {fileID: 8300000, guid: c82143dce6ad04d7f9d39746eb1934dc, type: 3}
   _runSound: {fileID: 8300000, guid: e28cbfcc1e9c64f16824c8ea4b2766f6, type: 3}
   _dushoutSound: {fileID: 8300000, guid: 81dc76df1c18d4428965887b5c42acb7, type: 3}
+  _openDoor: {fileID: 8300000, guid: 1dbcc68506a1a4c0280abbdd382ea0ac, type: 3}
 --- !u!114 &1740355750230732958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1367,7 +1370,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3521945663863373208}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.77, z: 0.058}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1406,7 +1409,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 30
   field of view: 60
   orthographic: 0
   orthographic size: 5

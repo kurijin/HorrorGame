@@ -56,10 +56,17 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    private void Die()
+    private async void Die()
     {
-        //await 死んだ時のアニメーション
+        await DieMotion();
         InGameFlow.Instance.GameOver();
+    }
+
+    private async UniTask DieMotion()
+    {
+        Quaternion targetRotation = Quaternion.Euler(-90f, transform.rotation.eulerAngles.y, 25f);
+        transform.rotation = targetRotation;
+        await UniTask.Delay(TimeSpan.FromSeconds(2f));
     }
 
     public int GetHP()
