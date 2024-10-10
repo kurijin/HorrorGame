@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 /// <summary>
 /// スタートボタンを押した時のダイアログ
 /// </summary>
-
 public class FirstFlow : MonoBehaviour
 {
     [SerializeField, Header("最初のダイアログの会話配列")] private Text[] _dialogue;  
@@ -26,7 +25,7 @@ public class FirstFlow : MonoBehaviour
         }
 
         await RevealAllTextAsync();
-        SceneManager.LoadScene("InGame");
+        await LoadLoadingSceneWithTransition();
     }
 
     private async UniTask RevealAllTextAsync()
@@ -40,6 +39,7 @@ public class FirstFlow : MonoBehaviour
             {
                 await RevealTextAsync(_dialogue[i], messages[i], _revealSpeed); 
             }    
+
             // 次のダイアログまで2秒待機
             await UniTask.Delay(TimeSpan.FromSeconds(1));  
         }
@@ -48,6 +48,7 @@ public class FirstFlow : MonoBehaviour
     /// <summary>
     /// テキストを左から右に流すもの
     /// </summary>
+
     private async UniTask RevealTextAsync(Text textComponent, string message, float speed)
     {
         SoundManager.Instance.PlaySE(_dialogueSE);
@@ -60,5 +61,12 @@ public class FirstFlow : MonoBehaviour
         }
 
         SoundManager.Instance.StopSE();
+    }
+
+    private async UniTask LoadLoadingSceneWithTransition()
+    {
+        AsyncOperation async = SceneManager.LoadSceneAsync("LoadingScene");
+        async.allowSceneActivation = true; 
+        await UniTask.Yield();
     }
 }
