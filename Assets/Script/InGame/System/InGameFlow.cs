@@ -25,6 +25,7 @@ public class InGameFlow : MonoBehaviour
     [SerializeField,Header("メッセージUI")] private GameObject _messageUI;
     [SerializeField,Header("写すメッセージ")] private Text _showMessage;
     [SerializeField,Header("ポーズ画面UI")] private GameObject _pauseUI;
+    [SerializeField, Header("アイテムインベントリUI")] private GameObject _ItemInventoryUI;
     [SerializeField,Header("ゲームオーバーUI")] private GameObject _gameOverUI;
 
     //UI時に使用するシステムの参照
@@ -34,8 +35,10 @@ public class InGameFlow : MonoBehaviour
     //ポーズメニューのインプットシステム取得
     private PlayerInput _inputActions;
 
-    //ポーズ画面を開くアクションの追加のもの
+    //ポーズ画面、アイテムインベントリを開くアクションの追加のもの
     private InputAction _pauseAction;
+    private InputAction _inventoryAction;
+    [SerializeField, Header("パネル開く音")] private AudioClip _panelSE;
 
     //スタートUIが開かれたかどうかを確認するもの
     private bool _isStart;
@@ -43,8 +46,9 @@ public class InGameFlow : MonoBehaviour
     //画面上にアクションにより消せるUIが出た時の確認するもの
     private bool _isOK = false;
 
-    //ポーズ中かどうかを確認する
+    //ポーズ中かアイテムインベントリ中かどうかを確認する
     private bool _isPausing = false;
+    private bool _isInventory = false;
 
     //死亡時のPlayerのリスポーン地点
     [SerializeField,Header("プレイヤー")] private GameObject _player;
@@ -53,7 +57,9 @@ public class InGameFlow : MonoBehaviour
 
 
     private void Awake()
-    {      
+    {
+        Cursor.visible = false;  // カーソルを非表示にする
+        Cursor.lockState = CursorLockMode.Locked;
         if (Instance == null)
         {
             Instance = this;
@@ -62,11 +68,15 @@ public class InGameFlow : MonoBehaviour
         //プレイヤーの動きを制御
         _playerInputSystem.enabled = false;
 
-        //Pauseのインプットアクションは手動で追加  
+        //Pause,ItemInventoryのインプットアクションは手動で追加  
         _inputActions = GetComponent<PlayerInput>();      
         _pauseAction = _inputActions.actions.FindActionMap("UI").FindAction("Pause");
         _pauseAction.performed += OnPause; 
         _pauseAction.Disable();
+
+        _inventoryAction = _inputActions.actions.FindActionMap("UI").FindAction("ItemInventory");
+        _inventoryAction.performed += OnInventory;
+        _inventoryAction.Disable();
     }
 
     public Vector3 PlayerPosition()
@@ -147,6 +157,7 @@ public class InGameFlow : MonoBehaviour
     {
         // ゲーム開始
         _pauseAction.Enable();
+        _inventoryAction.Enable();
         _playerUI.SetActive(true);
         _playerInputSystem.enabled = true;
         _enemyManager.SetActive(true);
@@ -178,6 +189,8 @@ public class InGameFlow : MonoBehaviour
 
     public void GameOver()
     {
+        Cursor.visible = true;  
+        Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0f;
         _gameOverUI.SetActive(true);
     }
@@ -226,14 +239,20 @@ public class InGameFlow : MonoBehaviour
     /// </summary>
     public void OnPause(InputAction.CallbackContext context)
     {
+
         _isPausing = !_isPausing;
         if(_isPausing)
         {
+            SoundManager.Instance.PlaySE3(_panelSE);
+            Cursor.visible = true; 
+            Cursor.lockState = CursorLockMode.None;
             Time.timeScale = 0f;
         }
         else
         {
             Time.timeScale = 1f;
+            Cursor.visible = false;  
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         _playerInputSystem.enabled = !_isPausing;
@@ -245,5 +264,36 @@ public class InGameFlow : MonoBehaviour
     public void PauseOUT()
     {
         _pauseAction.performed -= OnPause;
+    }
+
+    public void OnInventory(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            _isInventory = !_isInventory;
+            if (_isInventory)
+            {
+                SoundManager.Instance.PlaySE3(_panelSE);
+                Time.timeScale = 0f;
+                Cursor.visible = true;  
+                Cursor.lockState = CursorLockMode.None;
+            }
+            else
+            {
+                Time.timeScale = 1f;
+                Cursor.visible = false;  
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+
+            _playerInputSystem.enabled = !_isInventory;
+            _ItemInventoryUI.SetActive(_isInventory);
+            _playerUI.SetActive(!_isPausing);
+        }
+    }
+
+    //ゲームクリアフラグを取った時のみ呼び出す
+    public void InventoryOUT()
+    {
+        _inventoryAction.performed -= OnInventory;
     }
 }

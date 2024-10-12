@@ -54,6 +54,8 @@ MonoBehaviour:
   _onPC: {fileID: 0}
   _pcMessage: 
   _keyLock: {fileID: 0}
+  _doorR: {fileID: 0}
+  _doorL: {fileID: 0}
 --- !u!65 &5762384703634969520
 BoxCollider:
   m_ObjectHideFlags: 0
