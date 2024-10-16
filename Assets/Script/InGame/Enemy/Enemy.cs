@@ -2,6 +2,7 @@
 using UnityEngine.AI;
 using Cysharp.Threading.Tasks;
 using System;
+using static UnityEngine.GraphicsBuffer;
 
 /// <summary>
 /// 敵キャラの基底クラス
@@ -87,16 +88,19 @@ public class Enemy : MonoBehaviour
 
     public virtual async UniTask Attack()
     {
-        SoundManager.Instance.PlaySE3(_se);
-        _myAgent.isStopped = true;
-        _isAttacking = true;
+        if (!InGameFlow.Instance.isFinish)
+        { 
+            SoundManager.Instance.PlaySE3(_se);
+            _myAgent.isStopped = true;
+            _isAttacking = true;
 
-        _animator.SetTrigger("Attack");
+            _animator.SetTrigger("Attack");
 
-        _playerHealth.TakeDamage(1);
-        await UniTask.Delay(TimeSpan.FromSeconds(_stopDuration));
+            _playerHealth.TakeDamage(1);
+            await UniTask.Delay(TimeSpan.FromSeconds(_stopDuration));
 
-        _myAgent.isStopped = false;
-        _isAttacking = false;
+            _myAgent.isStopped = false;
+            _isAttacking = false;
+        }
     }
 }

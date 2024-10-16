@@ -50,8 +50,10 @@ public class InGameFlow : MonoBehaviour
     private bool _isPausing = false;
     private bool _isInventory = false;
 
-    //死亡時のPlayerのリスポーン地点
+    //死亡&チェックポイント処理
     [SerializeField,Header("プレイヤー")] private GameObject _player;
+    public bool isFinish = false;
+    [SerializeField, Header("第2チェックポイントの後に有効になるもの")] private GameObject _keyLock;
 
     [SerializeField,Header("通常BGM")] private AudioClip _normalBGM;
 
@@ -92,26 +94,37 @@ public class InGameFlow : MonoBehaviour
         {
             //初期
             case 0:
-                await UniTask.Delay(TimeSpan.FromSeconds(2));
+                await UniTask.Delay(TimeSpan.FromSeconds(1));
+                ItemSpawnManager.Instance.SpawnRandomItems();
                 _startUI.SetActive(true);
-                _isStart = true;  
+                _isStart = true;
                 break;
             //チュートリアル~電池取得
             case 1:
-                _player.transform.position = CheckPointManager.Instance.currentPosition;
+                _player.GetComponent<CharacterController>().enabled = false; 
+                _player.transform.position = CheckPointManager.Instance.currentPosition; 
+                _player.GetComponent<CharacterController>().enabled = true; 
+                ItemSpawnManager.Instance.RetryRespawnItem();
                 GameStart();
                 break;
             //電池取得後~大部屋の鍵取得
             case 2:
                 EnemyManager.Instance.DeleteTrigger(1);
+                _player.GetComponent<CharacterController>().enabled = false;
                 _player.transform.position = CheckPointManager.Instance.currentPosition;
+                _player.GetComponent<CharacterController>().enabled = true;
+                ItemSpawnManager.Instance.RetryRespawnItem();
                 GameStart();
                 break;
             //大部屋の鍵取得後~大部屋内
             case 3:
                 EnemyManager.Instance.DeleteTrigger(1);
                 EnemyManager.Instance.DeleteTrigger(2);
+                _keyLock.tag = "Lock";
+                _player.GetComponent<CharacterController>().enabled = false;
                 _player.transform.position = CheckPointManager.Instance.currentPosition;
+                _player.GetComponent<CharacterController>().enabled = true;
+                ItemSpawnManager.Instance.RetryRespawnItem();
                 GameStart();
                 break;
             //大部屋~
@@ -119,7 +132,10 @@ public class InGameFlow : MonoBehaviour
                 EnemyManager.Instance.DeleteTrigger(1);
                 EnemyManager.Instance.DeleteTrigger(2);
                 EnemyManager.Instance.DeleteTrigger(3);
+                _player.GetComponent<CharacterController>().enabled = false;
                 _player.transform.position = CheckPointManager.Instance.currentPosition;
+                _player.GetComponent<CharacterController>().enabled = true;
+                ItemSpawnManager.Instance.RetryRespawnItem();
                 GameStart();
                 break;
             default:
@@ -167,12 +183,14 @@ public class InGameFlow : MonoBehaviour
     public async UniTask ShowMessage(string message)
     {
         _isOK = false;
+        _playerInputSystem.enabled = false;
         Time.timeScale = 0f;
         _messageUI.SetActive(true);
         _showMessage.text = message;
         await WaitForInput();
         _messageUI.SetActive(false);
         Time.timeScale = 1f;
+        _playerInputSystem.enabled = true;
         SoundManager.Instance.StopSE3();
     }
     public async UniTask ItemGet(string ItemName,Sprite ItemImage,string message)
@@ -187,8 +205,14 @@ public class InGameFlow : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    public void GameOver()
+    public async UniTask GameOver()
     {
+        isFinish = true;
+        _playerInputSystem.enabled = false;
+        _playerUI.SetActive(false);
+        Quaternion targetRotation = Quaternion.Euler(-90f, transform.rotation.eulerAngles.y, 25f);
+        _player.transform.rotation = targetRotation;
+        await UniTask.Delay(TimeSpan.FromSeconds(2f));
         Cursor.visible = true;  
         Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0f;
@@ -206,9 +230,12 @@ public class InGameFlow : MonoBehaviour
     public void End()
     {
         CheckPointManager.Instance.Check = 0;
+        ItemSpawnManager.Instance.DeletePlayerPrefs();
         ItemManager.Instance.ClearItemList();  
         Destroy(ItemManager.Instance.gameObject);
         Time.timeScale = 1f;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene("Title");
     }
 

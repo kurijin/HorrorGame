@@ -292,10 +292,10 @@ GameObject:
   - component: {fileID: 1475534529299707540}
   - component: {fileID: 2386167100406106553}
   - component: {fileID: 2299026814309437962}
-  - component: {fileID: 4550629216830288053}
   - component: {fileID: 3759706190763978513}
   - component: {fileID: 6907175406555778937}
   - component: {fileID: 6963967793238751917}
+  - component: {fileID: 5940636268656813695}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Enemy
@@ -336,7 +336,7 @@ MonoBehaviour:
   _vanishTime: 10
   _stopDuration: 2
   _normalBGM: {fileID: 8300000, guid: 576bcd33785684b8880003d386ed95ac, type: 3}
-  _bgm: {fileID: 8300000, guid: 76b3b3e8b7ef444719adcfc589940ad2, type: 3}
+  _bgm: {fileID: 8300000, guid: 16e417312eaa44f11a1220b2bfe89cd3, type: 3}
   _se: {fileID: 8300000, guid: b2fddd006152246e3974d8202994a2f5, type: 3}
 --- !u!65 &2299026814309437962
 BoxCollider:
@@ -357,29 +357,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.36541557, y: 0.2788478, z: 0.31506228}
-  m_Center: {x: -0.029922247, y: 0.27867335, z: 0.008624911}
---- !u!65 &4550629216830288053
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9132703350814440212}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.65167713, y: 0.35777092, z: 0.46919215}
-  m_Center: {x: -0.016935587, y: 0.23436072, z: 0.01293534}
+  m_Size: {x: 0.9054191, y: 1.0774533, z: 1.0153784}
+  m_Center: {x: -0.08165181, y: 0.67797595, z: 0.006294191}
 --- !u!95 &3759706190763978513
 Animator:
   serializedVersion: 5
@@ -449,6 +428,29 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!136 &5940636268656813695
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9132703350814440212}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &1781444088167707649
 PrefabInstance:
   m_ObjectHideFlags: 0

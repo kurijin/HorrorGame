@@ -46,7 +46,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (_hp <= 0)
         {
-            Die();
+            Die().Forget();
         }
         else
         {
@@ -56,18 +56,11 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    private async void Die()
+    private async UniTask Die()
     {
-        await DieMotion();
-        InGameFlow.Instance.GameOver();
+        await InGameFlow.Instance.GameOver();  
     }
 
-    private async UniTask DieMotion()
-    {
-        Quaternion targetRotation = Quaternion.Euler(-90f, transform.rotation.eulerAngles.y, 25f);
-        transform.rotation = targetRotation;
-        await UniTask.Delay(TimeSpan.FromSeconds(2f));
-    }
 
     public int GetHP()
     {

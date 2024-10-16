@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,14 +16,11 @@ public class ReadBook : MonoBehaviour
     [SerializeField,Header("メッセージパネル")] private GameObject _messagePanel;
     [SerializeField,Header("メッセージテキスト")] private Text _messageText;
     [SerializeField,Header("テキスト内容")] private string _message;
-    [SerializeField,Header("タグを変えるオブジェクト")] private GameObject _changeTagObject;
+    [SerializeField,Header("タグを変えるオブジェクト最終脱出床")] private GameObject _changeTagObject;
 
-    void Start()
-    {
-        _messageText.text = _message;
-    }
     public async UniTask OnBookRead()
     {
+        _messageText.text = _message;
         _hintPanel.SetActive(true);
         await UniTask.Delay(TimeSpan.FromSeconds(3f));
         _hintPanel.SetActive(false);

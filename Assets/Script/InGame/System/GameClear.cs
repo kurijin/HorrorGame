@@ -1,4 +1,4 @@
-using UnityEngine.InputSystem;
+﻿using UnityEngine.InputSystem;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
@@ -66,6 +66,8 @@ public class GameClear : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            InGameFlow.Instance.PauseOUT();
+            InGameFlow.Instance.InventoryOUT();
             SoundManager.Instance.StopBGM();
             ItemManager.Instance.SaveCollectDuckItems();
             _playerInputSystem.enabled = false;
