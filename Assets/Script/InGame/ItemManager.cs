@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using System.Linq; 
 
@@ -54,13 +54,14 @@ public class ItemManager : MonoBehaviour
         if (PlayerPrefs.HasKey("ItemList"))
         {
             string savedItems = PlayerPrefs.GetString("ItemList");
-            itemList = new List<string>(savedItems.Split(','));  
+            // 空のエントリーを除外してリストに変換
+            itemList = new List<string>(savedItems.Split(',').Where(item => !string.IsNullOrEmpty(item)).ToList());
         }
         else
         {
             itemList = new List<string>();
         }
-         
+
         GameObject[] itemsInScene = GameObject.FindGameObjectsWithTag("Item");
         foreach (GameObject item in itemsInScene)
         {
@@ -71,6 +72,7 @@ public class ItemManager : MonoBehaviour
             }
         }
     }
+
 
     /// <summary>
     /// アイテムリストを消す
