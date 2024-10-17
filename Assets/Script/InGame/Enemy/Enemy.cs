@@ -88,19 +88,29 @@ public class Enemy : MonoBehaviour
 
     public virtual async UniTask Attack()
     {
-        if (!InGameFlow.Instance.isFinish)
-        { 
+        if (!InGameFlow.Instance.isFinish && this != null && _myAgent != null)
+        {
             SoundManager.Instance.PlaySE3(_se);
-            _myAgent.isStopped = true;
+            if (_myAgent != null)
+            {
+                _myAgent.isStopped = true;
+            }
             _isAttacking = true;
 
             _animator.SetTrigger("Attack");
 
-            _playerHealth.TakeDamage(1);
+            if (_playerHealth != null)
+            {
+                _playerHealth.TakeDamage(1);
+            }
+
             await UniTask.Delay(TimeSpan.FromSeconds(_stopDuration));
 
-            _myAgent.isStopped = false;
-            _isAttacking = false;
+            if (this != null && _myAgent != null)
+            {
+                _myAgent.isStopped = false;
+                _isAttacking = false;
+            }
         }
     }
 }
