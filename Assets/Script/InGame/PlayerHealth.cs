@@ -23,7 +23,7 @@ public class PlayerHealth : MonoBehaviour
 
     // 音声
     [SerializeField, Header("攻撃受けた音")] private AudioClip _damageSE;
-
+    [SerializeField, Header("ゲームオーバー")] private AudioClip _gameOverSE;
     public void Start()
     {
         _player = gameObject.GetComponent<Player>();
@@ -58,6 +58,7 @@ public class PlayerHealth : MonoBehaviour
 
     private async UniTask Die()
     {
+        SoundManager.Instance.PlaySE2(_gameOverSE);
         await InGameFlow.Instance.GameOver();  
     }
 

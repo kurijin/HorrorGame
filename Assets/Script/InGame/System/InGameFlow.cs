@@ -221,8 +221,9 @@ public class InGameFlow : MonoBehaviour
 
     public void Retry()
     {
-        ItemManager.Instance.ClearItemList();  
-        _pauseAction.performed -= OnPause;
+        ItemManager.Instance.ClearItemList();
+        PauseOUT();
+        InventoryOUT();
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
@@ -233,6 +234,8 @@ public class InGameFlow : MonoBehaviour
         ItemSpawnManager.Instance.DeletePlayerPrefs();
         ItemManager.Instance.ClearItemList();  
         Destroy(ItemManager.Instance.gameObject);
+        PauseOUT();
+        InventoryOUT();
         Time.timeScale = 1f;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
