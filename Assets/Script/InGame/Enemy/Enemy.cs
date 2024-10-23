@@ -72,6 +72,7 @@ public class Enemy : MonoBehaviour
         SoundManager.Instance.StopBGM();
         SoundManager.Instance.PlayBGM(_normalBGM);
         EnemyManager.Instance.EnemyCheckpoint(ID);
+        EnemyManager.Instance.elapsedTime = 0f;
         Destroy(gameObject);
     }
 

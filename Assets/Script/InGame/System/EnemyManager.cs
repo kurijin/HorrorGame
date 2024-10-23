@@ -18,7 +18,13 @@ public class EnemyManager : MonoBehaviour
     [SerializeField, Header("敵の出現トリガー")] private GameObject[] _enemyTrigger;
 
     private int _currentLevel;
-    private float _elapsedTime;
+
+    /// <summary> スポーンスポット間でかかったタイムを計測するstatic変数</summary>
+    public float elapsedTime;
+
+    [Header("スポットid毎に考えられるハードの敵、ノーマルの敵の閾値")]
+    [SerializeField, Header("ハードの敵のタイムの閾値")]private float[] _hardTimeBox;
+    [SerializeField, Header("ノーマルの敵のタイムの閾値")]private float[] _normalTimeBox;
 
     public static EnemyManager Instance { get; private set; }
 
@@ -46,17 +52,18 @@ public class EnemyManager : MonoBehaviour
     {
         _enemyTrigger[spotnumber].SetActive(true);
     }
+
     public void DeleteTrigger(int spotnumber)
     {
         Destroy(_enemyTrigger[spotnumber]);
     }
 
     //時間経過やアクションにより難易度を変更さしたい場合に使用
-    ///  private void Update()
-    ///  {
-    ///     _currentLevel = DifficultyManager.Instance.Level;
-    ///     _elapsedTime += Time.deltaTime;
-    ///  }
+    private void Update()
+    {
+        _currentLevel = DifficultyManager.Instance.Level;
+        elapsedTime += Time.deltaTime;
+    }
 
 
 
@@ -80,8 +87,8 @@ public class EnemyManager : MonoBehaviour
     /// <param name="id">スポットごとのID</param>
     private void SpawnEnemy(Vector3 spawnPosition, int id)
     {
+        EnemySpawnTimeCheck(id);
         GameObject[] respawnEnemies;
-
         // 難易度に応じた敵のグループを選択
         switch (_currentLevel)
         {
@@ -117,6 +124,29 @@ public class EnemyManager : MonoBehaviour
     }
 
     /// <summary>
+    /// スポーンエネミーのごとにその時点の経過時間を考えて、ある閾値以上だと敵を出現させる
+    /// </summary>
+    /// <param name="id"> スポットのID (idは1から始まっているため配列では-1する)</param>
+    private void EnemySpawnTimeCheck(int id)
+    {
+        float _hardTime = _hardTimeBox[id - 1];
+        float _normalTime = _normalTimeBox[id - 1];
+
+        if(elapsedTime > _hardTime)
+        {
+            DifficultyManager.Instance.Level = 3;
+        }
+        else if(elapsedTime > _normalTime)
+        {
+            DifficultyManager.Instance.Level = 2;
+        }
+        else if(elapsedTime >= 0)
+        {
+            DifficultyManager.Instance.Level = 1;
+        }
+    }
+
+    /// <summary>
     /// プレイヤーを渡すもの
     /// </summary>
     /// <returns></returns>
@@ -145,6 +175,5 @@ public class EnemyManager : MonoBehaviour
             default:
                 break;
         }
-
     }
 }

@@ -178,6 +178,7 @@ public class InGameFlow : MonoBehaviour
         _playerInputSystem.enabled = true;
         _enemyManager.SetActive(true);
         ItemManager.Instance.LoadItemList();
+        EnemyManager.Instance.elapsedTime = 0f;
     }
 
     public async UniTask ShowMessage(string message)
