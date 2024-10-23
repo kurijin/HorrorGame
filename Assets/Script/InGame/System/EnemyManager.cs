@@ -135,14 +135,22 @@ public class EnemyManager : MonoBehaviour
         if(elapsedTime > _hardTime)
         {
             DifficultyManager.Instance.Level = 3;
+            _currentLevel = 3;
         }
         else if(elapsedTime > _normalTime)
         {
             DifficultyManager.Instance.Level = 2;
+            _currentLevel = 2;
         }
         else if(elapsedTime >= 0)
         {
             DifficultyManager.Instance.Level = 1;
+            _currentLevel = 1;
+        }
+        else
+        {
+            DifficultyManager.Instance.Level = 0;
+            _currentLevel = 0;
         }
     }
 
