@@ -7,6 +7,7 @@ using static UnityEngine.GraphicsBuffer;
 /// <summary>
 /// 敵キャラの基底クラス
 /// EnemyManagerから出た時敵IDも付与され、死んだ時それをEnemyManagerに返す.
+/// 敵ID = 1,2,3はトリガースポットのID
 /// </summary>
 public class Enemy : MonoBehaviour
 {
@@ -38,6 +39,7 @@ public class Enemy : MonoBehaviour
     /// </summary>
     private void Start()
     {
+        EnemySpawnUI.Instance.OnEnemySpawned();
         SoundManager.Instance.StopBGM();
         SoundManager.Instance.PlayBGM(_bgm);
         _player = EnemyManager.Instance.GetPlayer();
@@ -72,7 +74,11 @@ public class Enemy : MonoBehaviour
         SoundManager.Instance.StopBGM();
         SoundManager.Instance.PlayBGM(_normalBGM);
         EnemyManager.Instance.EnemyCheckpoint(ID);
-        EnemyManager.Instance.elapsedTime = 0f;
+        if(ID <= 3)
+        {
+            EnemyManager.Instance.elapsedTime = 0f;
+        }
+        EnemySpawnUI.Instance.OnEnemyDisappeared();
         Destroy(gameObject);
     }
 

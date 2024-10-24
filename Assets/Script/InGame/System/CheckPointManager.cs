@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +8,7 @@ using UnityEngine;
 /// 進行度1:チュートリアル終了
 /// 進行度2:電池拾った後の敵消えた後
 /// 進行度3:大部屋鍵取得後の敵消えた後
-/// 進行度4:大部屋での敵が消えた後
+/// これいらない？→進行度4:大部屋での敵が消えた後
 /// </summary>
 public class CheckPointManager : MonoBehaviour
 {

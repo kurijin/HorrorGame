@@ -17,6 +17,8 @@ public class ReadBook : MonoBehaviour
     [SerializeField,Header("メッセージテキスト")] private Text _messageText;
     [SerializeField,Header("テキスト内容")] private string _message;
     [SerializeField,Header("タグを変えるオブジェクト最終脱出床")] private GameObject _changeTagObject;
+    [SerializeField, Header("関連してるスポットID")] private int _spotID;
+    
 
     public async UniTask OnBookRead()
     {
@@ -30,5 +32,6 @@ public class ReadBook : MonoBehaviour
         _messagePanel.SetActive(false); 
 
         _changeTagObject.tag = "Lock";
+        EnemyManager.Instance.ActiveTrigger(_spotID);
     }
 }

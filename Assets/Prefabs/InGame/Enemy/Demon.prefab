@@ -582,7 +582,6 @@ GameObject:
   - component: {fileID: 189631063243401508}
   - component: {fileID: 7681407513252068130}
   - component: {fileID: 8460805992016583736}
-  - component: {fileID: 3788851497279404242}
   m_Layer: 0
   m_Name: Demon
   m_TagString: Enemy
@@ -715,29 +714,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!136 &3788851497279404242
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2804752469126744034}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.57
-  m_Height: 4
-  m_Direction: 1
-  m_Center: {x: 0, y: 3, z: 0}
 --- !u!1 &3080207066344191683
 GameObject:
   m_ObjectHideFlags: 0

@@ -2523,7 +2523,6 @@ GameObject:
   - component: {fileID: 6664771954390884418}
   - component: {fileID: 3454763107519748977}
   - component: {fileID: 8601934212429922771}
-  - component: {fileID: 5968189113906020613}
   m_Layer: 0
   m_Name: Zombie1
   m_TagString: Enemy
@@ -2669,29 +2668,6 @@ MonoBehaviour:
   _normalBGM: {fileID: 8300000, guid: 576bcd33785684b8880003d386ed95ac, type: 3}
   _bgm: {fileID: 8300000, guid: 4429654ab62a942b49bbfbfc1034db5c, type: 3}
   _se: {fileID: 8300000, guid: 8bac345c26426448fb8ed4e4b2df92a7, type: 3}
---- !u!136 &5968189113906020613
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8150503083471933124}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &8241157722519491830
 GameObject:
   m_ObjectHideFlags: 0

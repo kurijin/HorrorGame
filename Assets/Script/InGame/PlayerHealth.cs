@@ -39,6 +39,7 @@ public class PlayerHealth : MonoBehaviour
     {
         // 無敵状態であればダメージを受けない
         if (isInvincible) return;
+        EnemySpawnUI.Instance.OnDamageTaken();
 
         SoundManager.Instance.PlaySE2(_damageSE);
         _hp -= power;

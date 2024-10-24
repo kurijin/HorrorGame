@@ -113,7 +113,9 @@ public class GameClear : MonoBehaviour
 
         //最後のテキスト表示
         await RevealAllTextAsync();
-        //ゲーム終了
+        //ゲームクリア保存
+        PlayerPrefs.SetInt("GameClear", 1);
+        PlayerPrefs.Save();
         InGameFlow.Instance.End();
     }
 

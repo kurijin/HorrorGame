@@ -8,6 +8,10 @@ using System.Linq;
 /// 敵の出現トリガーをONにするのは色々なスクリプトから呼ぶ(→フラグが立たないとトリガーは出現しない.)
 /// spotID == EnemyIDで敵が死んだ時このスクリプトのチェックポイントEnemyが呼び出されてそれとともにid(spotID,enemyID)が渡される
 /// それによってどこの敵かを考え、セーブポイントを作る。
+/// 
+/// 
+/// ゲーム一回クリア時であるならば
+/// エネミースポーン間の移動時間によって敵の難易度が難しくなる
 /// </summary>
 public class EnemyManager : MonoBehaviour
 {
@@ -21,6 +25,7 @@ public class EnemyManager : MonoBehaviour
 
     /// <summary> スポーンスポット間でかかったタイムを計測するstatic変数</summary>
     public float elapsedTime;
+    private int _gameClear;
 
     [Header("スポットid毎に考えられるハードの敵、ノーマルの敵の閾値")]
     [SerializeField, Header("ハードの敵のタイムの閾値")]private float[] _hardTimeBox;
@@ -40,6 +45,9 @@ public class EnemyManager : MonoBehaviour
     {
         // 難易度を取得
         _currentLevel = DifficultyManager.Instance.Level;
+        ///ゲームクリアかどうかをちぇっく
+        _gameClear = PlayerPrefs.GetInt("GameClear", 0);
+
     }
 
     /// <summary>
@@ -61,8 +69,11 @@ public class EnemyManager : MonoBehaviour
     //時間経過やアクションにより難易度を変更さしたい場合に使用
     private void Update()
     {
-        _currentLevel = DifficultyManager.Instance.Level;
-        elapsedTime += Time.deltaTime;
+        if(_gameClear == 1)
+        {
+            _currentLevel = DifficultyManager.Instance.Level;
+            elapsedTime += Time.deltaTime;
+        }
     }
 
 
@@ -87,7 +98,11 @@ public class EnemyManager : MonoBehaviour
     /// <param name="id">スポットごとのID</param>
     private void SpawnEnemy(Vector3 spawnPosition, int id)
     {
-        EnemySpawnTimeCheck(id);
+        ///idが３以下（ストーリーに関連するスポットのみ適応）
+        if (_gameClear == 1 && id <= 3)
+        {
+            EnemySpawnTimeCheck(id);
+        }
         GameObject[] respawnEnemies;
         // 難易度に応じた敵のグループを選択
         switch (_currentLevel)
@@ -177,9 +192,12 @@ public class EnemyManager : MonoBehaviour
             case 2:
                 CheckPointManager.Instance.Check = 3;
                 break;
-            case 3:
-                CheckPointManager.Instance.Check = 4;
-                break;
+            ///<summary>
+            ///最後の避難経路を見た後のチェックポイントいらない　??
+            ///case 3:
+            /// CheckPointManager.Instance.Check = 4;
+            ///break;
+            ///</summary>
             default:
                 break;
         }
