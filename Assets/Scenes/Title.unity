@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641228, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -472,6 +472,22 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 215808611}
+    - target: {fileID: 3072839777425438894, guid: abf12dc3f4a3149ef93c7b12b391b570, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 706.278
+      objectReference: {fileID: 0}
+    - target: {fileID: 3072839777425438894, guid: abf12dc3f4a3149ef93c7b12b391b570, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 162.076
+      objectReference: {fileID: 0}
+    - target: {fileID: 3072839777425438894, guid: abf12dc3f4a3149ef93c7b12b391b570, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 2.751
+      objectReference: {fileID: 0}
+    - target: {fileID: 3072839777425438894, guid: abf12dc3f4a3149ef93c7b12b391b570, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -422
+      objectReference: {fileID: 0}
     - target: {fileID: 3455864151963984569, guid: abf12dc3f4a3149ef93c7b12b391b570, type: 3}
       propertyPath: m_Name
       value: TitleUI
@@ -488,6 +504,10 @@ PrefabInstance:
       propertyPath: _buttonSelect
       value: 
       objectReference: {fileID: 2138603020}
+    - target: {fileID: 7693677013417878816, guid: abf12dc3f4a3149ef93c7b12b391b570, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -176
+      objectReference: {fileID: 0}
     - target: {fileID: 8033523346798240460, guid: abf12dc3f4a3149ef93c7b12b391b570, type: 3}
       propertyPath: m_Pivot.x
       value: 0

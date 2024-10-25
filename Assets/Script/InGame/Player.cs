@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Cysharp.Threading.Tasks;
 using System;
+using Unity.AI.Navigation;
 
 public class Player : MonoBehaviour
 {
@@ -32,6 +33,7 @@ public class Player : MonoBehaviour
     [SerializeField, Header("PlayerUIの中心のイメージ")] private Image _centerImage; 
     [SerializeField, Header("アイテムがない時の中心点")] private Sprite _normalCenter; 
     [SerializeField, Header("アイテムがある時の中心点")] private Sprite _itemCenter; 
+    [SerializeField, Header("ステージのNavMesh")] private NavMeshSurface _navMeshSurface; 
     private float _verticalRotation = 0f;
 
     // アニメーション
@@ -197,6 +199,8 @@ public class Player : MonoBehaviour
                 {
                     Animator _doorAnimator = hit.collider.GetComponent<Animator>();
                     _doorAnimator.SetTrigger("Open");
+                    // NavMeshをベイク
+                    _navMeshSurface.BuildNavMesh();
                     SoundManager.Instance.PlaySE3(_openDoor);
                     hit.collider.gameObject.tag = "Untagged";
                 }
