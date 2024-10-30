@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Cysharp.Threading.Tasks;
 using System;
+using Unity.AI.Navigation;
 
 public class Player : MonoBehaviour
 {
@@ -31,7 +32,8 @@ public class Player : MonoBehaviour
     [SerializeField, Header("レイキャストの射程距離")] private float raycastDistance = 5f; 
     [SerializeField, Header("PlayerUIの中心のイメージ")] private Image _centerImage; 
     [SerializeField, Header("アイテムがない時の中心点")] private Sprite _normalCenter; 
-    [SerializeField, Header("アイテムがある時の中心点")] private Sprite _itemCenter; 
+    [SerializeField, Header("アイテムがある時の中心点")] private Sprite _itemCenter;
+    [SerializeField, Header("敵の移動領域NavMesh")] private NavMeshSurface _navMeshSurface;
     private float _verticalRotation = 0f;
 
     // アニメーション
@@ -73,14 +75,14 @@ public class Player : MonoBehaviour
             SoundManager.Instance.StopSE();
             _isStopped = false;
         }
+        else if (_playerHealth.isInvincible)
+        {
+            _moveSpeed = _speedInvincible;
+        }
         else if (isRunnig && _playerHealth.GetStamina() > 0)
         {
             _moveSpeed = _runSpeed;
             _playerHealth.ConsumeStamina(_consumeStamina);
-        }
-        else if (_playerHealth.isInvincible)
-        {
-            _moveSpeed = _speedInvincible;
         }
         else
         {
@@ -199,6 +201,9 @@ public class Player : MonoBehaviour
                     _doorAnimator.SetTrigger("Open");
                     SoundManager.Instance.PlaySE3(_openDoor);
                     hit.collider.gameObject.tag = "Untagged";
+                    //NavMeshBake
+                    //_navMeshSurface.BuildNavMesh();
+
                 }
                 else if(hit.collider.CompareTag("Lock"))
                 {

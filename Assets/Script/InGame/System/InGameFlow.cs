@@ -198,6 +198,7 @@ public class InGameFlow : MonoBehaviour
     {
         _isOK = false;
         Time.timeScale = 0f;
+        _itemName.text = ItemName;
         _itemMessage.text = message;
         _itemImage.sprite = ItemImage;
         _itemGetUI.SetActive(true);

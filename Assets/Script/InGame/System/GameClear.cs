@@ -107,6 +107,7 @@ public class GameClear : MonoBehaviour
 
         _animator.SetTrigger("Attack");
         SoundManager.Instance.PlaySE2(_enemySE);
+        await UniTask.Delay(TimeSpan.FromSeconds(1));
 
         SoundManager.Instance.PlayBGM(_bgm);
         _gameClearUI.SetActive(true);

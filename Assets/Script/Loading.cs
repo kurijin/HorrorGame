@@ -35,7 +35,11 @@ public class Loading : MonoBehaviour
             if (async1.progress >= 0.9f)
             {
                 await UniTask.Delay(TimeSpan.FromSeconds(0.5)); 
-                async1.allowSceneActivation = true; 
+                async1.allowSceneActivation = true;
+
+                // BlinkTextを停止
+                _loadingText = null;
+                break; // ループを抜ける
             }
 
             await UniTask.Yield(); 
@@ -44,14 +48,17 @@ public class Loading : MonoBehaviour
 
     private async UniTask BlinkText()
     {
-        while (true) 
+        while (_loadingText != null) 
         {
             _loadingText.enabled = true;
             await UniTask.Delay(TimeSpan.FromSeconds(1f));
-            _loadingText.enabled = false;
-            await UniTask.Delay(TimeSpan.FromSeconds(0.5f)); 
 
+            if (_loadingText == null) break; 
+
+            _loadingText.enabled = false;
+            await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
         }
     }
+
 
 }

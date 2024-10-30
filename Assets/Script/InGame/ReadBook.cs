@@ -24,7 +24,7 @@ public class ReadBook : MonoBehaviour
     {
         _messageText.text = _message;
         _hintPanel.SetActive(true);
-        await UniTask.Delay(TimeSpan.FromSeconds(3f));
+        await UniTask.Delay(TimeSpan.FromSeconds(5f));
         _hintPanel.SetActive(false);
 
         _messagePanel.SetActive(true);

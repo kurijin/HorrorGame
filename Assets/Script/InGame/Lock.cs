@@ -38,9 +38,9 @@ public class Lock : MonoBehaviour
 
     public void ClearLock()
     {
-        gameObject.tag = "Untagged";
         if(ItemManager.Instance.itemList.Contains(_needItem))
         {
+            gameObject.tag = "Untagged";
             SoundManager.Instance.PlaySE3(_unlockSE);
             InGameFlow.Instance.ShowMessage(_unlockMessage).Forget();
             if(gameObject.name == "PC")
