@@ -8,7 +8,7 @@
 https://youtu.be/nF1HCdbQm1o
 
 - 作品のスクリプトオンリーgithub
-https://github.com/kurijin/ScriptHorror/tree/main
+https://github.com/kurijin/ScriptHorror
 
 # スクリーンショット
 ![IMG_4316](https://github.com/user-attachments/assets/9df9d82a-c880-4868-afce-355f501033ce)
